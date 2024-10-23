@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Kartu Kosakata BahasaKu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="C:\VSCode\html-css\tubes-frontend\css\pilgan-fc.css">
+    <script defer src="flashcards.js"></script>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <h1 class="logo">Bahasa<span>Ku</span></h1>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="profile.html">Profile</a></li>
+                    <li><a href="#">Logout</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="flashcards-section">
+            <h2>Kartu Kosakata</h2>
+            <div class="flashcard" onclick="flipCard(this)">
+                <div class="front">Kucing</div>
+                <div class="back">Cat</div>
+            </div>
+            <div class="flashcard" onclick="flipCard(this)">
+                <div class="front">Rumah</div>
+                <div class="back">House</div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Dashboard BahasaKu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="C:\VSCode\html-css\tubes-frontend\css\dashboard.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <h1 class="logo">Bahasa<span>Ku</span></h1>
+                <ul class="nav-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="#">Logout</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div class="dashboard-container">
+        <h2>Selamat Datang, Teman Bahasa<span>Ku</span>!</h2>
+        <p id="pilih-tantangan">Pilih Tantangan</p>
+        <div id="pilih-fitur" class="features">
+            <div class="feature-box" onclick="location.href='materi.html'">
+                <h3>Materi</h3>
+                <p>Pelajari tata bahasa yang benar</p>
+            </div>
+            <div class="feature-box" onclick="location.href='kuis.html'">
+                <h3>Kuis</h3>
+                <p>Uji kemampuanmu melalui kuis interaktif</p>
+            </div>
+            <div class="feature-box" onclick="location.href='kamus.html'">
+                <h3>Kamus</h3>
+                <p>Akses kamus bahasa Indonesia lengkap</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

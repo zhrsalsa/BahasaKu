@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuis Tanda Baca</title>
+    <link rel="stylesheet" href="C:\VSCode\html-css\tubes-frontend\css\pilgan.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <h1 class="logo">Bahasa<span>Ku</span></h1>
+                <ul class="nav-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="#">Logout</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div class="quiz-container">
+        <button class="exit-btn" onclick="location.href='kuis.html'">X</button>
+        <!-- Penanda nomor soal -->
+        <div class="question-number">Soal 1/5</div>
+        <div id="progress-bar-container">
+            <div id="progress-bar"></div>
+        </div>
+        <div class="question-box">
+            <h2 id="question-title">Soal tentang tanda baca:</h2>
+            <div class="options">
+                <!-- Tambahkan dua tombol untuk 4 pilihan -->
+                <button class="option" onclick="checkAnswer(0)">Pilihan 1</button>
+                <button class="option" onclick="checkAnswer(1)">Pilihan 2</button>
+                <button class="option" onclick="checkAnswer(2)">Pilihan 3</button>
+                <button class="option" onclick="checkAnswer(3)">Pilihan 4</button>
+            </div>
+        </div>
+        <button class="next-btn" onclick="nextQuestion()">Next</button>
+    </div>
+
+    <div id="result-screen" class="hidden">
+        <h2 id="result-message"></h2>
+        <h3 id="score">Skor Anda: 0</h3>
+        <button class="next-btn retry-btn" onclick="restartQuiz()">Coba Lagi</button>
+        <button class="next-btn test-btn" onclick="location.href='kuis.html'">Coba kuis yang lain</button>
+    </div>
+    <script src="C:\VSCode\html-css\tubes-frontend\js\pilgan.js"></script>
+</body>
+</html>

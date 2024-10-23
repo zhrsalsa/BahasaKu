@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuis Kata Baku</title>
+    <link rel="stylesheet" href="C:\VSCode\html-css\tubes-frontend\css\pick-one.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <h1 class="logo">Bahasa<span>Ku</span></h1>
+                <ul class="nav-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="#">Logout</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div class="quiz-container">
+        <button class="exit-btn" onclick="location.href='kuis.html'">X</button> <!-- Tombol keluar tetap di dalam quiz-container -->
+        <div id="progress-bar-container">
+            <div id="progress-bar"></div>
+        </div>
+        <div class="question-box">
+            <h2 id="question-title">Pilih kata yang benar:</h2>
+            <div class="options">
+                <button class="option" onclick="checkAnswer(0)">Kata 1</button>
+                <h3>atau</h3>
+                <button class="option" onclick="checkAnswer(1)">Kata 2</button>
+            </div>
+        </div>
+        <button class="next-btn" onclick="nextQuestion()">Next</button>
+    </div>    
+
+    <div id="result-screen" class="hidden">
+        <h2 id="result-message"></h2>
+        <h3 id="score">Skor Anda: 0</h3>
+        <button class="next-btn retry-btn" onclick="restartQuiz()">Coba Lagi</button>
+        <button class="next-btn test-btn" onclick="location.href='kuis.html'">Coba kuis yang lain</button>
+    </div>
+    <script src="C:\VSCode\html-css\tubes-frontend\js\pick-one.js"></script>
+</body>
+</html>

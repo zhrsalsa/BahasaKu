@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f7f7f7;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 40px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #4CAF50;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+.game {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 30px;
+}
+
+.grid table {
+    border-collapse: collapse;
+}
+
+.grid td {
+    width: 60px;
+    height: 60px;
+    border: 2px solid #4CAF50;
+    text-align: center;
+}
+
+.grid td input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+}
+
+.grid td input:focus {
+    outline: none;
+    background-color: #e0ffe0;
+}
+
+.grid td input:hover {
+    background-color: #e0ffe0;
+}
+
+.grid td:empty {
+    background-color: #333;
+}
+
+.questions {
+    max-width: 300px;
+}
+
+.questions h2 {
+    color: #4CAF50;
+    font-weight: 600;
+}
+
+.questions ol {
+    padding-left: 20px;
+    font-size: 16px;
+}
+
+.questions li {
+    margin-bottom: 10px;
+}
+
+.submit-btn {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 30px;
+}
+
+.submit-btn:hover {
+    background-color: #45a049;
+}
+
+.submit-btn:active {
+    background-color: #3e8e41;
+}
+
+.success {
+    text-align: center;
+    padding: 50px;
+    color: #4CAF50;
+    font-size: 24px;
+    font-weight: 600;
+}

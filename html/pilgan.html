@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Kuis BahasaKu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="C:\VSCode\html-css\tubes-frontend\css\pilgan-fc.css">
+    <script defer src="quiz.js"></script>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <h1 class="logo">Bahasa<span>Ku</span></h1>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="profile.html">Profile</a></li>
+                    <li><a href="#">Logout</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="quiz-section">
+            <h2>Kuis Bahasa Indonesia</h2>
+            <form id="quiz-form">
+                <p>1. Apa arti dari "Matahari"?</p>
+                <label><input type="radio" name="q1" value="salah1"> Bumi</label><br>
+                <label><input type="radio" name="q1" value="salah2"> Air</label><br>
+                <label><input type="radio" name="q1" value="benar"> Matahari</label><br><br>
+
+                <p>2. Apa arti dari "Buku"?</p>
+                <label><input type="radio" name="q2" value="benar"> Buku</label><br>
+                <label><input type="radio" name="q2" value="salah1"> Pensil</label><br>
+                <label><input type="radio" name="q2" value="salah2"> Meja</label><br><br>
+
+                <button type="button" onclick="checkQuiz()">Submit</button>
+            </form>
+            <p id="score"></p>
+        </section>
+    </main>
+</body>
+</html>

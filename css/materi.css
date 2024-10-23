@@ -1,0 +1,151 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+/* Navbar dan header */
+header {
+    background-color: #4CAF50;
+    padding: 20px;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: white;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.logo span {
+    color: #ffcc00;
+}
+
+.nav-links {
+    list-style-type: none;
+}
+
+.nav-links li {
+    display: inline;
+    margin-left: 20px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: 400;
+}
+
+.nav-links a:hover {
+    text-decoration: underline;
+}
+
+/* Styling untuk judul "Ejaan" */
+h1, h2, h3 {
+    color: #333;
+}
+
+h2 {
+    text-align: center; /* Pusatkan judul */
+    justify-content: center;
+    margin-top: 40px;
+    font-size: 32px;
+    color: #4CAF50;
+    font-weight: 600;
+}
+
+h3 {
+    margin-top: 30px;
+    font-size: 24px;
+    color: #4CAF50;
+}
+
+/* Styling untuk paragraf */
+p {
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+/* Sumber referensi */
+.source {
+    font-style: italic;
+    color: #555;
+}
+
+/* Section styling untuk setiap kotak */
+.section {
+    background: #fff; /* Warna latar belakang kotak */
+    border-radius: 10px; /* Rounded corner */
+    padding: 30px; /* Ruang di dalam kotak */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Bayangan lembut */
+    margin: 30px auto; /* Jarak antar kotak */
+    width: 80%; /* Lebar kotak menyesuaikan layar */
+}
+
+ul {
+    margin-left: 20px;
+    margin-bottom: 15px;
+}
+
+/* Styling tombol bulat */
+.circle-btn {
+    width: 50px;
+    height: 50px;
+    background-color: #4CAF50; /* Warna tombol hijau */
+    border-radius: 50%; /* Membuat tombol menjadi bulat */
+    display: inline-block;
+    position: absolute;
+    left: 20px; /* Menempatkan tombol di sisi kiri */
+    top: 110px; /* Sejajarkan dengan judul "Ejaan" */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Tambahkan bayangan */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Warna ketika tombol di-hover */
+.circle-btn:hover {
+    background-color: #ffcc00; /* Warna kuning saat hover */
+}
+
+/* Tambahkan ikon atau teks berbentuk "<" */
+.circle-btn::before {
+    content: "<"; /* Simbol kurang dari */
+    color: white;
+    font-size: 24px;
+    display: block;
+    text-align: center;
+    line-height: 50px; /* Agar teks berada di tengah secara vertikal */
+}
+
+
+
+/* Tambahan responsif untuk layar kecil */
+@media (max-width: 768px) {
+    h2 {
+        font-size: 28px;
+    }
+
+    h3 {
+        font-size: 22px;
+    }
+
+    .section {
+        width: 90%;
+        padding: 20px;
+    }
+
+    ul {
+        margin-left: 15px;
+    }
+}
