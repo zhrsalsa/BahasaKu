@@ -10,11 +10,10 @@ body {
     color: #333;
 }
 
-/* Navbar dan header */
 header {
     background-color: #4CAF50;
     padding: 20px;
-    
+
 }.navbar .container {
     display: flex;
     justify-content: space-between;
@@ -31,13 +30,12 @@ header {
     color: #ffcc00;
 }
 
-/* Styling untuk judul "Ejaan" */
 h1, h2, h3 {
     color: #333;
 }
 
 h2 {
-    text-align: center; /* Pusatkan judul */
+    text-align: center;
     justify-content: center;
     margin-top: 40px;
     font-size: 32px;
@@ -51,26 +49,23 @@ h3 {
     color: #4CAF50;
 }
 
-/* Styling untuk paragraf */
 p {
     line-height: 1.6;
     margin-bottom: 15px;
 }
 
-/* Sumber referensi */
 .source {
     font-style: italic;
     color: #555;
 }
 
-/* Section styling untuk setiap kotak */
 .section {
-    background: #fff; /* Warna latar belakang kotak */
-    border-radius: 10px; /* Rounded corner */
-    padding: 30px; /* Ruang di dalam kotak */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Bayangan lembut */
-    margin: 30px auto; /* Jarak antar kotak */
-    width: 80%; /* Lebar kotak menyesuaikan layar */
+    background: #fff;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 30px auto;
+    width: 80%;
 }
 
 ul {
@@ -78,39 +73,34 @@ ul {
     margin-bottom: 15px;
 }
 
-/* Styling tombol bulat */
 .circle-btn {
     width: 50px;
     height: 50px;
-    background-color: #4CAF50; /* Warna tombol hijau */
-    border-radius: 50%; /* Membuat tombol menjadi bulat */
+    background-color: #4CAF50;
+    border-radius: 50%;
     display: inline-block;
     position: absolute;
-    left: 20px; /* Menempatkan tombol di sisi kiri */
-    top: 110px; /* Sejajarkan dengan judul "Ejaan" */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Tambahkan bayangan */
+    left: 20px;
+    top: 110px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
-/* Warna ketika tombol di-hover */
 .circle-btn:hover {
     background-color: #ffcc00; /* Warna kuning saat hover */
 }
 
-/* Tambahkan ikon atau teks berbentuk "<" */
 .circle-btn::before {
-    content: "<"; /* Simbol kurang dari */
+    content: "<";
     color: white;
     font-size: 24px;
     display: block;
     text-align: center;
-    line-height: 50px; /* Agar teks berada di tengah secara vertikal */
+    line-height: 50px;
 }
 
 
-
-/* Tambahan responsif untuk layar kecil */
 @media (max-width: 768px) {
     h2 {
         font-size: 28px;

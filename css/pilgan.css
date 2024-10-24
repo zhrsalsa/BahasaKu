@@ -117,7 +117,7 @@ header {
 
 .next-btn {
     margin-top: 30px;
-    background-color: #1e90ff;
+    background-color: #4CAF50;
     color: white;
     padding: 10px 30px;
     border: none;
@@ -129,7 +129,7 @@ header {
 }
 
 .next-btn:hover {
-    background-color: #46b453;
+    background-color:  #45a049;
 }
 
 /* Result screen */
