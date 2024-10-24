@@ -88,7 +88,7 @@ function showResult() {
     resultScreen.classList.remove('hidden');
 
     // Display the final score
-    scoreDisplay.textContent = `Skor Anda: ${score}/${questions.length}`;
+    scoreDisplay.textContent = `Anda berhasil menjawab ${score} dari ${questions.length} soal`;
 
     // Determine the result message
     if (score === questions.length) {

@@ -84,7 +84,7 @@ function showResult() {
     quizContainer.classList.add('hidden');
     resultScreen.classList.remove('hidden');
 
-    scoreDisplay.textContent = `Skor Anda: ${score}/${questions.length}`;
+    scoreDisplay.textContent = "Anda berhasil menjawab ${score} dari ${questions.length} soal";
 
     if (score === questions.length) {
         resultMessage.textContent = "Selamat! Anda menjawab semuanya dengan benar!";
