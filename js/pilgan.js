@@ -3,11 +3,56 @@ let score = 0;
 let isAnswered = false;
 
 const questions = [
-    { question: "Pilih tanda baca yang benar untuk mengakhiri kalimat:", options: [".", ",", ":", ";"], correctAnswer: 0 },
-    { question: "Kalimat tanya sebaiknya diakhiri dengan:", options: [".", "!", "?", ","], correctAnswer: 2 },
-    { question: "Pilih penggunaan tanda koma yang benar:", options: ["Halo, selamat datang.", "Halo selamat, datang.", "Halo selamat datang", "Halo; selamat datang"], correctAnswer: 0 },
-    { question: "Tanda seru (!) biasanya digunakan untuk:", options: ["Pernyataan biasa", "Pertanyaan", "Seruan atau perintah", "Daftar item"], correctAnswer: 2 },
-    { question: "Kalimat sapaan biasanya diakhiri dengan tanda:", options: [",", ".", ":", "!"], correctAnswer: 0 }
+    { 
+        question: "Pilih kalimat yang benar tepat!",
+        options: [
+            "Kami mengundang Bapak/Ibu untuk menghadiri rapat yang akan dilaksanakan pada hari senin, 23 Januari 2024.",
+            "Kami mengundang Bapak/Ibu untuk menghadiri rapat yang akan dilaksanakan pada hari Senin, 23 Januari 2024.",
+            "Kami mengundang Bapak/Ibu untuk menghadiri rapat yang akan dilaksanakan pada Hari Senin, 23 Januari, 2024.",
+            "Kami mengundang Bapak/Ibu untuk menghadiri rapat yang akan dilaksanakan pada hari Senin, 23 Januari, 2024."
+        ],
+        correctAnswer: 1 
+    },
+    { 
+        question: "Pilih kalimat yang benar tepat!",
+        options: [
+            "Penelitian ini harus menggunakan metode analisa yang tepat dan relevan.",
+            "Penelitian ini harus menggunakan metode analisis yang tepat dan relevan.",
+            "Penelitian ini harus menggunakan metoda analisis yang tepat dan relevan.",
+            "Penelitian ini harus menggunakan metode analisa yang tepat dan relefan."
+        ],
+        correctAnswer: 1 
+    },
+    { 
+        question: "Pilih kalimat yang benar tepat!",
+        options: [
+            "Toko buku itu menjual buku-buku, alat tulis, dan berbagai perlengkapan sekolah.",
+            "Toko buku itu menjual buku buku, alat tulis dan berbagai perlengkapan sekolah.",
+            "Toko buku itu menjual buku-buku, alat tulis dan berbagai perlengkapan sekolah.",
+            "Toko buku itu menjual buku buku, alat-tulis, dan berbagai perlengkapan sekolah."
+        ],
+        correctAnswer: 0 
+    },
+    { 
+        question: "Pilih kalimat yang benar tepat!",
+        options: [
+            "Pada tahun 2024, kami berencana untuk membuka cabang baru di 3 kota.",
+            "Pada tahun 2024, kami berencana untuk membuka cabang baru di tiga kota.",
+            "Pada tahun 2024 kami berencana untuk membuka cabang baru di tiga kota.",
+            "Pada tahun 2024 kami berencana untuk membuka cabang baru di 3 kota."
+        ],
+        correctAnswer: 1 
+    },
+    { 
+        question: "Pilih kalimat yang benar tepat!",
+        options: [
+            "Acara ini akan berlangsung pada tanggal 17, Oktober, 2024.",
+            "Acara ini akan berlangsung pada tanggal 17 Oktober, 2024.",
+            "Acara ini akan berlangsung pada tanggal 17 Oktober 2024.",
+            "Acara ini akan berlangsung pada tanggal 17, Oktober 2024."
+        ],
+        correctAnswer: 1 
+    }
 ];
 
 // Load the first question on page load
@@ -84,7 +129,7 @@ function showResult() {
     quizContainer.classList.add('hidden');
     resultScreen.classList.remove('hidden');
 
-    scoreDisplay.textContent = "Anda berhasil menjawab ${score} dari ${questions.length} soal";
+    scoreDisplay.textContent = `Anda berhasil menjawab ${score} dari ${questions.length} soal`;
 
     if (score === questions.length) {
         resultMessage.textContent = "Selamat! Anda menjawab semuanya dengan benar!";
@@ -97,7 +142,7 @@ function restartQuiz() {
     score = 0;
     currentQuestion = 0;
     const quizContainer = document.querySelector('.quiz-container');
-    const resultScreen = document.getElementById('result-screen');
+    const resultScreen = document.querySelector('.result-screen');
 
     resultScreen.classList.add('hidden');
     quizContainer.classList.remove('hidden');

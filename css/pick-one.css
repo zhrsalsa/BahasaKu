@@ -36,28 +36,8 @@ header {
     color: #ffcc00;
 }
 
-.nav-links {
-    list-style-type: none;
-}
-
-.nav-links li {
-    display: inline;
-    margin-left: 20px;
-}
-
-.nav-links a {
-    color: white;
-    text-decoration: none;
-    font-weight: 400;
-}
-
-.nav-links a:hover {
-    text-decoration: underline;
-}
-
-/* Quiz container */
 .quiz-container {
-    position: relative; /* Tambahkan relative agar elemen absolute bisa diposisikan di dalamnya */
+    position: relative; 
     background-color: white;
     width: 70%;
     height: auto;
@@ -69,7 +49,6 @@ header {
     text-align: center;
 }
 
-/* Progress Bar */
 #progress-bar-container {
     justify-self: center;
     width: 90%;
@@ -89,7 +68,6 @@ header {
     transition: width 0.4s ease;
 }
 
-/* Button style */
 .option {
     background-color: #f0f0f0;
     width: 220px;
@@ -138,7 +116,6 @@ header {
     background-color: #46b453;
 }
 
-/* Result screen */
 #result-screen {
     text-align: center;
     background-color: white;
@@ -177,12 +154,11 @@ header {
     background-color: #46b453;
 }
 
-/* Tambahkan CSS ini untuk exit-btn */
 .exit-btn {
-    position: absolute; /* Posisikan secara absolut */
-    top: 10px; /* Jarak dari atas */
-    right: 10px; /* Jarak dari kanan */
-    background-color: #ff5722;
+    position: absolute;
+    top: 10px; 
+    right: 10px;
+    background-color: #ffcc00;
     width: 40px;
     height: 40px;
     color: white;
@@ -191,7 +167,7 @@ header {
     cursor: pointer;
     font-size: 24px;
     text-align: center;
-    line-height: 40px; /* Agar "X" berada tepat di tengah secara vertikal */
+    line-height: 40px;
     transition: background-color 0.3s ease;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }

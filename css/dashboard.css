@@ -12,7 +12,7 @@ body {
 }
 
 header {
-    background-color: #4CAF50;
+    background-color:   #4CAF50;
     padding: 20px;
 }
 
@@ -30,25 +30,6 @@ header {
 
 .logo span {
     color: #ffcc00;
-}
-
-.nav-links {
-    list-style-type: none;
-}
-
-.nav-links li {
-    display: inline;
-    margin-left: 20px;
-}
-
-.nav-links a {
-    color: white;
-    text-decoration: none;
-    font-weight: 400;
-}
-
-.nav-links a:hover {
-    text-decoration: underline;
 }
 
 .dashboard-container {
@@ -77,7 +58,7 @@ h2 span{
 
 .features {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     flex-wrap: wrap;
 }
 

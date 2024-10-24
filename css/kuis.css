@@ -33,25 +33,6 @@ header {
     color: #ffcc00;
 }
 
-
-.nav-links {
-    list-style-type: none;
-}
-
-.nav-links li {
-    display: inline;
-    margin-left: 20px;
-}
-
-.nav-links a {
-    color: white;
-    text-decoration: none;
-    font-weight: 400;
-}
-
-.nav-links a:hover {
-    text-decoration: underline;
-}
 .container {
     text-align: center;
 }
@@ -104,7 +85,6 @@ h2 {
     width: 290px;
     font-size: 1.6rem;
     font-weight: bold;
-    font-style: italic;
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s ease;
