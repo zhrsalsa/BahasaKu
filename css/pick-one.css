@@ -162,6 +162,7 @@ header {
 }
 
 .retry-btn {
+    font-weight: bold;
     background-color: #ff7f50;
 }
 

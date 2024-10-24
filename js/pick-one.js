@@ -27,7 +27,7 @@ function loadQuestion() {
     });
 
     // Set the question and options
-    questionEl.textContent = `Pilih kata yang benar:`;
+    questionEl.textContent = `Pilih kata yang tepat:`;
     optionsEl.forEach((option, index) => {
         option.textContent = questions[currentQuestion].options[index];
     });
