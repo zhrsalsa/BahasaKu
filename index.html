@@ -6,30 +6,64 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>BahasaKu</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
         <nav class="navbar">
             <div class="container">
                 <h1 class="logo">Bahasa<span>Ku</span></h1>
+                <ul class="nav-links">
+                    <li><a href="signin.html">Sign in</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="home.html">Home</a></li>
+                </ul>
             </div>
         </nav>
     </header>
 
-    <div class="dashboard-container">
-        <h2>Selamat Datang, Teman BahasaKu!</h2>
-        <p id="pilih-tantangan"></p>
-        <div id="pilih-fitur" class="features">
-            <div class="feature-box" onclick="location.href='materi.html'">
-                <h3>Materi</h3>
-                <p>Pelajari ejaan Bahasa Indonesia yang sesuai dengan EYD V</p>
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Unlock Your Potential with <span>Interactive Language Learning</span></h1>
+                <p>Boost your Bahasa Indonesia skills with engaging quizzes, fun challenges, and personalized feedback – all without needing to sign up!</p>
+                <a href="dashboard.html" class="cta-btn">Get Started Now</a>
             </div>
-            <div class="feature-box" onclick="location.href='kuis.html'">
-                <h3>Kuis</h3>
-                <p>Uji kemampuanmu dalam menentukan kata atau kalimat yang sesuai</p>
+            <div class="hero-image">
+                <img src="hero-image.png" alt="Learning illustration">
             </div>
         </div>
-    </div>
+    </section>
+
+    <section id="features" class="features-section">
+        <div class="container">
+            <h2>Belajar bersama BahasaKu</h2>
+            <div class="features">
+                <div class="feature-box">
+                    <h3>Materi</h3>
+                    <p>Kuasai materi dan perbanyak pengetahuanmu mengenai ejaan bahasa indonesia</p>
+                </div>
+                <div class="feature-box">
+                    <h3>Kuis</h3>
+                    <p>Uji kemampuanmu dengan kuis berdasarkan materi-materi yang sudah kamu pelajari di BahasaKu</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about-section">
+        <div class="container">
+            <h2>About BahasaKu</h2>
+            <p>BahasaKu percaya bahwa belajar bahasa harus menyenangkan, interaktif, dan dapat diakses oleh semua orang. Misi kami adalah menyediakan siswa dengan platform yang menyenangkan untuk membantu menambah pengetahuan seputar Bahasa Indonesia. Tanpa perlu mendaftar, platform kami cepat dan mudah digunakan, membuat pembelajaran bahasa menjadi menyenangkan dan tidak merepotkan.</p>
+        </div>
+    </section>
+
+    <footer id="contact" class="footer">
+        <div class="container">
+            <h3>Salsabila Azzahra</h3>
+            <button><a href="" target="_blank">twitter</a></button>
+            <p>© 2024 BahasaKu. All rights reserved.</p>
+        </div>
+    </footer>
 </body>
 </html>
