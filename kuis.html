@@ -1,30 +1,253 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Kuis Bahasaku</title>
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="kuis.css">
-    </head>
-    <body>
-        <header>
-            <nav class="navbar">
-                <div class="container">
-                    <h1 class="logo">Bahasa<span>Ku</span></h1>
-                </div>
-            </nav>
-        </header>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Kuis Bahasaku</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Basic Styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-        <a class="circle-btn" onclick="location.href='home.html'"></a>
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
 
-        <div class="container">
-            <h2>Pilih Tantangan</h2>
-            <div class="button-container">
-                <button class="quiz-button" onclick="location.href='pick-one.html'">Kata Baku</button>
-                <button class="quiz-button" onclick="location.href='pilgan2.html'">Ejaan</button>
+        /* Navbar Styling */
+        header {
+            background-color: white;
+            color: rgb(73, 54, 111);
+            padding: 20px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 600;
+            margin-left: 30px;
+        }
+
+        .logo span {
+            color: #ffdd57;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: rgb(73, 54, 111);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        /* Hamburger Menu Styling */
+        .hamburger {
+            font-size: 24px;
+            cursor: pointer;
+            display: none;
+        }
+
+        /* Responsive Navbar */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                gap: 15px;
+                position: absolute;
+                top: 50%;
+                left: 0;
+                width: 100%;
+                background-color: rgb(73, 54, 111);
+                padding: 20px;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: block;
+            }
+        }
+
+        /* Content Styling */
+        .content {
+            padding: 100px 20px 20px; /* Offset untuk navbar tetap */
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 40px;
+        }
+
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            gap: 20px;
+        }
+
+        .quiz-card {
+            background-color: #ffffff;
+            width: 400px;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .quiz-image {
+            width: 100px;
+            height: 160px;
+            object-fit: cover;
+        }
+
+        .quiz-info {
+            display: flex;
+            flex-direction: column;
+            align-self: flex-start;
+            flex-grow: 1;
+        }
+
+        .quiz-info p {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #4CAF50;
+            margin-bottom: 5px;
+        }
+
+        .quiz-info span {
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        .quiz-button {
+            background-color: #FFD54F;
+            color: #333;
+            border: none;
+            padding: 8px 16px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .quiz-button:hover {
+            background-color: #ffcc00;
+        }
+
+        .quiz-button:active {
+            transform: scale(0.98);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <h1 class="logo">Bahasa<span>Ku</span></h1>
+                <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="profile.html">Profil</a></li>
+                    <li><a href="home.html">Belajar</a></li>
+                    <li><a href="kuis.html">Kuis</a></li>
+                </ul>
             </div>
+        </nav>
+    </header>
+
+    <div class="content">
+        <h2>Pilih Tantangan</h2>
+        <div class="button-container">
+            <div class="quiz-card" onclick="location.href='huruf-kapital.html'">
+                <img src="card.png" alt="Quiz Image" class="quiz-image">
+                <div class="quiz-info">
+                    <p>Huruf Kapital</p>
+                    <span>5 Soal</span>
+                </div>
+                <button class="quiz-button">Mulai</button>
+            </div>            
+            <div class="quiz-card" onclick="location.href='huruf-kapital.html'">
+                <img src="card.png" alt="Quiz Image" class="quiz-image">
+                <div class="quiz-info">
+                    <p>Huruf Kapital</p>
+                    <span>5 Soal</span>
+                </div>
+                <button class="quiz-button">Mulai</button>
+            </div>            
+            <div class="quiz-card" onclick="location.href='katabaku.html'">
+                <img src="card.png" alt="Quiz Image" class="quiz-image">
+                <div class="quiz-info">
+                    <p>Huruf Miring</p>
+                    <span>5 Soal</span>
+                </div>
+                <button class="quiz-button">Mulai</button>
+            </div>
+            <div class="quiz-card" onclick="location.href='pilgan2.html'">
+                <img src="card.png" alt="Quiz Image" class="quiz-image">
+                <div class="quiz-info">
+                    <p>Huruf Tebal</p>
+                    <span>5 Soal</span>
+                </div>
+                <button class="quiz-button">Mulai</button>
+            </div>
+            <div class="quiz-card" onclick="location.href='pilgan2.html'">
+                <img src="card.png" alt="Quiz Image" class="quiz-image">
+                <div class="quiz-info">
+                    <p>Penulisan Imbuhan</p>
+                    <span>5 Soal</span>
+                </div>
+                <button class="quiz-button">Mulai</button>
+            </div>
+            <div class="quiz-card" onclick="location.href='pilgan2.html'">
+                <img src="card.png" alt="Quiz Image" class="quiz-image">
+                <div class="quiz-info">
+                    <p>Unsur Serapan</p>
+                    <span>5 Soal</span>
+                </div>
+                <button class="quiz-button">Mulai</button>
+            </div>
+            <div class="quiz-card" onclick="location.href='pilgan2.html'">
+                <img src="card.png" alt="Quiz Image" class="quiz-image">
+                <div class="quiz-info">
+                    <p>Penulisan Kata Majemuk</p>
+                    <span>5 Soal</span>
+                </div>
+                <button class="quiz-button">Mulai</button>
+            </div>        
         </div>
-    </body>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById("navLinks");
+            navLinks.classList.toggle("active");
+        }
+    </script>
+</body>
 </html>

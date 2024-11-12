@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soal Pilihan Ganda - Huruf Kapital</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #1e1e2e;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 600px;
+            text-align: center;
+        }
+
+        .new-word {
+            font-size: 14px;
+            color: #b39ddb;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .options {
+            display: flex;
+            justify-content: space-around;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .option-card {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 8px;
+            width: 30%;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .option-text {
+            font-size: 16px;
+            color: #fff;
+            margin-top: 10px;
+        }
+
+        .button {
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 20px;
+            display: none; /* Initially hidden */
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background-color: #444;
+            border-radius: 5px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            width: 0%;
+            height: 100%;
+            background-color: #4CAF50;
+            transition: width 0.3s;
+        }
+
+        /* Correct/incorrect answer styling */
+        .correct {
+            background-color: #4CAF50 !important;
+        }
+
+        .incorrect {
+            background-color: #D32F2F !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Progress bar -->
+        <div class="progress-bar">
+            <div class="progress-bar-fill"></div>
+        </div>
+
+        <!-- Soal -->
+        <div class="new-word">Pertanyaan Baru</div>
+        <h1 id="question-text">Kalimat mana yang menggunakan huruf kapital dengan benar?</h1>
+
+        <!-- Pilihan jawaban -->
+        <div class="options">
+            <div class="option-card" onclick="selectOption(0)">
+                <p class="option-text" id="option-0">Option 1</p>
+            </div>
+            <div class="option-card" onclick="selectOption(1)">
+                <p class="option-text" id="option-1">Option 2</p>
+            </div>
+            <div class="option-card" onclick="selectOption(2)">
+                <p class="option-text" id="option-2">Option 3</p>
+            </div>
+        </div>
+
+        <!-- Button to check answer and move to the next question -->
+        <button class="button" id="next-button" onclick="nextQuestion()">Lanjut</button>
+    </div>
+
+    <script>
+        // Quiz data
+        const questions = [
+            {
+                question: "Kalimat mana yang menggunakan huruf kapital dengan benar?",
+                options: ["saya pergi ke Jakarta.", "Kemarin saya bertemu Andi.", "Hari ini adalah hari rabu."],
+                correctAnswer: 1
+            },
+            {
+                question: "Pilih kalimat yang benar:",
+                options: ["Dia tinggal di bandung.", "saya suka belajar.", "Ibu pergi ke Pasar."],
+                correctAnswer: 2
+            },
+            {
+                question: "Huruf kapital digunakan di ...",
+                options: ["awal kalimat.", "nama diri.", "keduanya benar."],
+                correctAnswer: 2
+            },
+            {
+                question: "Kalimat mana yang benar?",
+                options: ["Bapak sedang membaca koran.", "anak-anak bermain bola.", "Saya tinggal di Surabaya."],
+                correctAnswer: 2
+            },
+            {
+                question: "Pilih yang benar:",
+                options: ["ini adalah hari minggu.", "Kami berangkat ke Bali.", "Selamat tahun baru."],
+                correctAnswer: 1
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+        let selectedOption = null;
+        let score = 0;
+
+        // Initialize the quiz
+        function loadQuestion() {
+            const question = questions[currentQuestionIndex];
+            document.getElementById('question-text').textContent = question.question;
+            question.options.forEach((option, index) => {
+                document.getElementById(`option-${index}`).textContent = option;
+            });
+            document.getElementById('next-button').style.display = 'none';
+            document.querySelectorAll('.option-card').forEach(card => {
+                card.classList.remove('correct', 'incorrect');
+                card.style.pointerEvents = 'auto';
+            });
+
+            // Update progress bar
+            const progress = ((currentQuestionIndex) / questions.length) * 100;
+            document.querySelector('.progress-bar-fill').style.width = `${progress}%`;
+        }
+
+        function selectOption(optionNumber) {
+            selectedOption = optionNumber;
+            checkAnswer();
+        }
+
+        function checkAnswer() {
+            const question = questions[currentQuestionIndex];
+            const isCorrect = selectedOption === question.correctAnswer;
+            
+            document.querySelectorAll('.option-card').forEach((card, index) => {
+                card.classList.remove('correct', 'incorrect');
+                if (index === question.correctAnswer) {
+                    card.classList.add('correct');
+                } else if (index === selectedOption) {
+                    card.classList.add('incorrect');
+                }
+                card.style.pointerEvents = 'none';
+            });
+
+            if (isCorrect) score++;
+            document.getElementById('next-button').style.display = 'inline-block';
+        }
+
+        function nextQuestion() {
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                loadQuestion();
+            } else {
+                alert(`Quiz selesai! Skor Anda: ${score} dari ${questions.length}`);
+                resetQuiz();
+            }
+        }
+
+        function resetQuiz() {
+            currentQuestionIndex = 0;
+            score = 0;
+            loadQuestion();
+        }
+
+        // Load the first question on page load
+        loadQuestion();
+    </script>
+</body>
+</html>

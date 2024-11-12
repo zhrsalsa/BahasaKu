@@ -6,57 +6,89 @@
 
 body {
     font-family: 'Poppins', sans-serif;
+    display: flex;
     background-color: #f5f5f5;
     color: #333;
 }
 
-header {
+.sidebar {
+    width: 250px;
     background-color: #4CAF50;
+    color: white;
     padding: 20px;
-
-}.navbar .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
 }
 
-.logo {
-    color: white;
+.sidebar .logo {
     font-size: 24px;
     font-weight: 600;
 }
 
-.logo span {
+.sidebar .logo span {
     color: #ffcc00;
 }
 
-h1, h2, h3 {
-    color: #333;
+/* Profile Card in Sidebar */
+.profile-card {
+    display: flex;
+    align-items: center;
+    margin-top: 20px; /* Space between the logo and profile section */
+    margin-bottom: 30px;
 }
 
-h2 {
+.profile-pic {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid #ffcc00;
+    margin-right: 10px;
+}
+
+.profile-card nav a{
+    text-decoration: none;
+    font-size: 1.2rem;
+    color: white;
+    font-weight: 600;
+}
+
+.sidebar nav ul {
+    list-style: none;
+    margin-top: 30px;
+}
+
+.sidebar nav ul li {
+    margin: 15px 0;
+}
+
+.sidebar nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    display: block;
+    padding: 10px;
+    transition: background 0.3s;
+}
+
+.sidebar nav ul li a:hover {
+    background-color: #3e8e41;
+    border-radius: 5px;
+}
+
+.main-content {
+    margin-left: 250px;
+    padding: 20px;
+    width: calc(100% - 250px);
+}
+
+header h2 {
     text-align: center;
-    justify-content: center;
     margin-top: 40px;
     font-size: 32px;
     color: #4CAF50;
     font-weight: 600;
-}
-
-h3 {
-    margin-top: 30px;
-    font-size: 24px;
-    color: #4CAF50;
-}
-
-p {
-    line-height: 1.6;
-    margin-bottom: 15px;
-}
-
-.source {
-    font-style: italic;
-    color: #555;
 }
 
 .section {
@@ -68,54 +100,39 @@ p {
     width: 80%;
 }
 
-ul {
-    margin-left: 20px;
-    margin-bottom: 15px;
-}
-
-.circle-btn {
-    width: 50px;
-    height: 50px;
-    background-color: #4CAF50;
-    border-radius: 50%;
-    display: inline-block;
-    position: absolute;
-    left: 20px;
-    top: 110px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.circle-btn:hover {
-    background-color: #ffcc00; /* Warna kuning saat hover */
-}
-
-.circle-btn::before {
-    content: "<";
-    color: white;
+.section h3 {
     font-size: 24px;
-    display: block;
-    text-align: center;
-    line-height: 50px;
+    color: #4CAF50;
+    margin-top: 30px;
 }
 
+.section p, .section ul {
+    line-height: 1.6;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.section .source {
+    font-style: italic;
+    color: #555;
+}
 
 @media (max-width: 768px) {
-    h2 {
-        font-size: 28px;
+    .sidebar {
+        width: 200px;
     }
 
-    h3 {
-        font-size: 22px;
+    .main-content {
+        margin-left: 200px;
+        width: calc(100% - 200px);
+    }
+
+    header h2 {
+        font-size: 28px;
     }
 
     .section {
         width: 90%;
         padding: 20px;
-    }
-
-    ul {
-        margin-left: 15px;
     }
 }

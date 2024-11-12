@@ -9,27 +9,31 @@
     <link rel="stylesheet" href="home.css">
 </head>
 <body>
-    <header>
-        <nav class="navbar">
-            <div class="container">
-                <h1 class="logo">Bahasa<span>Ku</span></h1>
-            </div>
-        </nav>
-    </header>
+    <div class="sidebar">
+        <h1 class="logo">Bahasa<span>Ku</span></h1>
 
-    <div class="dashboard-container">
-        <h2>Selamat Datang, Teman BahasaKu!</h2>
-        <p id="pilih-tantangan"></p>
-        <div id="pilih-fitur" class="features">
-            <div class="feature-box" onclick="location.href='materi.html'">
-                <h3>Materi</h3>
-                <p>Pelajari ejaan Bahasa Indonesia yang sesuai dengan EYD V</p>
-            </div>
-            <div class="feature-box" onclick="location.href='kuis.html'">
-                <h3>Kuis</h3>
-                <p>Uji kemampuanmu dalam menentukan kata atau kalimat yang sesuai</p>
-            </div>
+        <div class="profile-card">
+            <img src="profile.png" alt="User Photo" class="profile-pic">
+            <nav><a href="profile.html">Profil</a></nav>
         </div>
+
+        <nav>
+            <ul>
+                <li><a href="home.html">Belajar</a></li>
+                <li><a href="kuis.html">Kuis</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="main-content">
+        <header>
+            <img src="panah.png" alt="Welcome Image" class="header-image">
+            <div class="header-text">
+                <h2>Selamat Datang, Nama!</h2>
+                <h4>Teman Bahasaku</h4>
+            </div>
+        </header>
+        <hr class="divider">        
     </div>
 </body>
 </html>
