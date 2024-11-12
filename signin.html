@@ -133,8 +133,12 @@
       text-decoration: underline;
     }
     
-    /* Responsiveness */
     @media screen and (max-width: 768px) {
+      body {
+        background-image: none;
+        background-color: white;
+      }
+
       .form-container {
           flex-direction: column;
       }
@@ -143,6 +147,7 @@
           width: 100%;
           margin-bottom: 20px;
       }
+
     }
   </style>
 </head>

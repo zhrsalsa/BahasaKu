@@ -20,7 +20,7 @@ body {
 }
 
 header {
-    background: #4CAF50;
+    background: rgb(73, 54, 111);
     padding: 20px 0;
     color: #fff;
 }
@@ -54,6 +54,8 @@ header {
     font-weight: 500;
 }
 
+
+
 .hero {
     background: #f0f4f7;
     padding: 100px 0;
@@ -79,7 +81,7 @@ header {
 }
 
 .hero h1 span {
-    color: #4CAF50;
+    color: rgb(73, 54, 111);
 }
 
 .hero p {
@@ -88,7 +90,7 @@ header {
 }
 
 .cta-btn {
-    background: #4CAF50;
+    background: rgb(73, 54, 111);
     color: #fff;
     padding: 10px 30px;
     text-decoration: none;
@@ -98,7 +100,7 @@ header {
 }
 
 .cta-btn:hover {
-    background: #3e8c40;
+    background: rgb(73, 54, 111);
 }
 
 .hero-image img {
@@ -193,10 +195,8 @@ header {
             <div class="container">
                 <h1 class="logo">Bahasa<span>Ku</span></h1>
                 <ul class="nav-links">
-                    <li><a href="signin.html">Sign in</a></li>
                     <li><a href="login.html">Login</a></li>
-                    <li><a href="home.html">Home</a></li>
-                </ul>
+                    <li><a id="sigin" href="signin.html">Sign in</a></li>                </ul>
             </div>
         </nav>
     </header>
@@ -206,7 +206,7 @@ header {
             <div class="hero-content">
                 <h1>Unlock Your Potential with <span>Interactive Language Learning</span></h1>
                 <p>Boost your Bahasa Indonesia skills with engaging quizzes, fun challenges, and personalized feedback – all without needing to sign up!</p>
-                <a href="" class="cta-btn">Get Started Now</a>
+                <a href="" class="cta-btn" onclick="location.href='signin.html'">Mulai</a>
             </div>
             <div class="hero-image">
                 <img src="hero-image.png" alt="Learning illustration">

@@ -6,7 +6,137 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>BahasaKu</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="home.css">
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    display: block;
+}
+
+.main-content {
+    margin-left: 250px; /* Sama dengan lebar sidebar */
+    padding: 20px;
+    width: calc(100% - 250px);
+}
+
+header {
+    margin-left: 20px;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+
+}
+
+header .header-text {
+    margin-left: 20px; /* Memberikan ruang antara gambar dan teks */
+}
+
+header h2 {
+    margin-left: 10px;
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+}
+
+header h4 {
+    margin-left: 10px;
+    font-size: 1rem;
+    color: #555;
+}
+
+header .header-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+hr.divider {
+    width: 95%;
+    margin-top: 20px;
+    margin-left: 20px;
+    border: none;
+    border-top: 3.3px solid #a4a0a03f;
+    border-radius: 10px;
+}
+
+/* Dashboard container */
+.dashboard-container {
+    text-align: center;
+}
+
+p#pilih-tantangan {
+    font-size: x-large;
+    color: #555;
+}
+
+.features#pilih-fitur {
+    font-size: larger;
+}
+
+.features {
+    display: flex;
+    justify-content: center;
+}
+
+.feature-box {
+    background-color: white;
+    width: 300px;
+    padding: 30px;
+    margin: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.feature-box:hover {
+    transform: scale(1.05);
+}
+
+.feature-box h3 {
+    font-size: 1.5rem;
+    color: #4CAF50;
+}
+
+.feature-box p {
+    margin-top: 10px;
+    color: #555;
+}
+
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 200px;
+    }
+
+    .main-content {
+        margin-left: 200px;
+        width: calc(100% - 200px);
+    }
+
+    header h2 {
+        font-size: 28px;
+    }
+
+    .section {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .right-sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        margin-top: 20px;
+    }
+}
+
+    </style>
 </head>
 <body>
     <div class="sidebar">
