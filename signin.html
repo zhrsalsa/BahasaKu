@@ -1,9 +1,75 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+  <script type="module">
+    // Impor modul Firebase di dalam script bertipe "module"
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
+    import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js";
+    
+    // Konfigurasi Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyCBNu8V547_Eg5hg1_hmbuibGmTf5olOJg",
+      authDomain: "bahasaku-eb21d.firebaseapp.com",
+      projectId: "bahasaku-eb21d",
+      storageBucket: "bahasaku-eb21d.firebasestorage.app",
+      messagingSenderId: "636276077242",
+      appId: "1:636276077242:web:aa463e78c2e0385594c883",
+      measurementId: "G-RHC681N2XH"
+    };
+    
+    // Inisialisasi Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    // Fungsi untuk registrasi
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelector(".sign-in form").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const name = document.querySelector("#username")
+        const email = document.querySelector("#email").value;
+        const password = document.querySelector("#password").value;
+
+        try {
+          // Registrasi dengan email dan password
+          await createUserWithEmailAndPassword(auth, email, password);
+          alert("Registrasi berhasil! Anda akan diarahkan ke halaman login.");
+          window.location.href = "login.html";
+        } catch (error) {
+          alert(`Registrasi gagal: ${error.message}`);
+        }
+      });
+    });
+
+    const createUserInFirestore = async (user) => {
+      try {
+        const userRef = doc(db, "users", user.uid); // Menggunakan UID sebagai ID dokumen
+        await setDoc(userRef, {
+          name: user.displayName || "Nama Pengguna",
+          email: user.email,
+          uis: user.uid
+        });
+        console.log("Pengguna berhasil ditambahkan ke Firestore!");
+      } catch (error) {
+        console.error("Error menambahkan pengguna ke Firestore:", error);
+      }
+    };
+
+    // Fungsi untuk registrasi
+    const registerUser = async (email, password) => {
+      try {
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+        createUserInFirestore(user); // Tambahkan pengguna ke Firestore setelah registrasi
+      } catch (error) {
+        console.error("Error saat registrasi:", error.message);
+      }
+    };
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sign In - Bahasaku</title>
+  <title>Sign In - Luminara</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
     * {
@@ -44,10 +110,7 @@
       font-size: 28px;
       font-weight: 600;
       margin-left: 30px;
-    }
-    
-    .logo span {
-      color: #ffdd57;
+      color:#ffdd57;
     }
 
     /* Container to center the form and image */
@@ -68,7 +131,7 @@
       border-radius: 30px;
       padding: 2rem;
       width: 400px;
-      box-shadow: 0 4px 9px rgba(194, 90, 90, 0.648);
+      box-shadow: 0 4px 10px rgba(197, 139, 39, 0.648);
     }
     
     h2 {
@@ -155,7 +218,7 @@
   <header>
       <nav class="navbar">
           <div class="container">
-              <h1 class="logo">Bahasa<span>Ku</span></h1>
+              <h1 class="logo">Luminara</h1>
           </div>
       </nav>
   </header>
@@ -167,12 +230,12 @@
       <h2>Sign In</h2>
       <form action="#">
         <div class="input-group">
-          <label for="username">Nama</label>
+          <label for="nama-signin">Nama</label>
           <input type="text" id="username" name="username" required>
         </div>
         <div class="input-group">
           <label for="username">Email</label>
-          <input type="text" id="username" name="username" required>
+          <input type="text" id="email" name="email" required>
         </div>
         <div class="input-group">
           <label for="password">Password</label>

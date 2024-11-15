@@ -1,9 +1,44 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
+    import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCBNu8V547_Eg5hg1_hmbuibGmTf5olOJg",
+      authDomain: "bahasaku-eb21d.firebaseapp.com",
+      projectId: "bahasaku-eb21d",
+      storageBucket: "bahasaku-eb21d.firebasestorage.app",
+      messagingSenderId: "636276077242",
+      appId: "1:636276077242:web:aa463e78c2e0385594c883",
+      measurementId: "G-RHC681N2XH"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelector(".log-in form").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const email = document.querySelector("#email").value;
+        const password = document.querySelector("#password").value;
+
+        try {
+          await signInWithEmailAndPassword(auth, email, password);
+          alert("Login berhasil!");
+          window.location.href = "home.html";
+        } catch (error) {
+          alert(`Login gagal: ${error.message}`);
+        }
+      });
+    });
+</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Log In - Bahasaku</title>
+  <title>Login - Luminara</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
     * {
@@ -44,9 +79,6 @@
       font-size: 28px;
       font-weight: 600;
       margin-left: 30px;
-    }
-    
-    .logo span {
       color: #ffdd57;
     }
 
@@ -97,7 +129,7 @@
     }
     
     .input-group input:focus {
-      border-color: #00838f;
+      border-color: rgb(73, 54, 111);
       outline: none;
     }
     
@@ -135,11 +167,17 @@
     
     /* Responsiveness */
     @media screen and (max-width: 768px) {
+      body {
+        background-image: none;
+        background-color: white;
+      }
+
       .form-container {
           flex-direction: column;
       }
     
       .form-box {
+        justify-self: center;
           width: 100%;
           margin-bottom: 20px;
       }
@@ -150,7 +188,7 @@
   <header>
     <nav class="navbar">
         <div class="container">
-            <h1 class="logo">Bahasa<span>Ku</span></h1>
+            <h1 class="logo">Luminara</h1>
         </div>
     </nav>
   </header>
@@ -161,11 +199,11 @@
         <form action="#">
           <div class="input-group">
             <label for="username-login">Email</label>
-            <input type="text" id="username-login" name="username" required>
+            <input type="text" id="email" name="email" required>
           </div>
           <div class="input-group">
             <label for="password-login">Password</label>
-            <input type="password" id="password-login" name="password" required>
+            <input type="password" id="password" name="password" required>
           </div>
           <button type="submit" class="btn" style="font-family: Poppins;">Login</button>
           <p>Belum punya akun? <a href="signin.html">Sign in</a></p>

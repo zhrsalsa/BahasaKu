@@ -1,169 +1,329 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script type="module" src="logout.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>BahasaKu</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Luminara</title>
+    <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: white;
+            color: #4a4a4a;
+        }
+
+        /* Navbar Styling */
+        header {
+            background-color: rgb(255, 255, 255);
+            color: rgb(73, 54, 111);
+            padding: 20px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        .logo span {
+            color: #ffcc00;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: rgb(73, 54, 111);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .hamburger {
+            font-size: 24px;
+            cursor: pointer;
+            display: none;
+            color: rgb(73, 54, 111);
+        }
+
+        /* Main Content Styling */
+        .main-content {
+            padding: 100px 20px 20px;
+            max-width: 1000px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .welcome-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .header-text h2 {
+            font-family: 'IM Fell English SC', serif;
+            font-size: 2rem;
+            color: rgb(73, 54, 111);
+        }
+
+        .header-image {
+            width: 120px;
+            height: 120px;
+        }
+
+        .dashboard-container {
+            background-color: #f7f7f7;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        .dashboard-container p {
+            font-size: 1.2rem;
+            color: #555;
+        }
+
+        .features {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .feature-box {
+            background-color: white;
+            width: 280px;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-box h3 {
+            font-size: 1.5rem;
+            color: rgb(73, 54, 111);
+        }
+
+        .feature-box p {
+            margin-top: 10px;
+            color: #777;
+        }
+
+        /* Responsive Navbar */
+        /* Responsive Navbar */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: white;
+        padding: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        z-index: 999;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .hamburger {
+        display: block;
+    }
 }
 
-body {
-    font-family: 'Poppins', sans-serif;
-    display: block;
+/* Responsive Features Layout */
+@media (max-width: 1024px) {
+    .features {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .feature-box {
+        width: 45%;
+        margin: 0 auto;
+    }
 }
-
-.main-content {
-    margin-left: 250px; /* Sama dengan lebar sidebar */
-    padding: 20px;
-    width: calc(100% - 250px);
-}
-
-header {
-    margin-left: 20px;
-    margin-bottom: 30px;
-    display: flex;
-    align-items: center;
-
-}
-
-header .header-text {
-    margin-left: 20px; /* Memberikan ruang antara gambar dan teks */
-}
-
-header h2 {
-    margin-left: 10px;
-    font-size: 1.6rem;
-    margin-bottom: 10px;
-}
-
-header h4 {
-    margin-left: 10px;
-    font-size: 1rem;
-    color: #555;
-}
-
-header .header-image {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    border-radius: 8px;
-}
-
-hr.divider {
-    width: 95%;
-    margin-top: 20px;
-    margin-left: 20px;
-    border: none;
-    border-top: 3.3px solid #a4a0a03f;
-    border-radius: 10px;
-}
-
-/* Dashboard container */
-.dashboard-container {
-    text-align: center;
-}
-
-p#pilih-tantangan {
-    font-size: x-large;
-    color: #555;
-}
-
-.features#pilih-fitur {
-    font-size: larger;
-}
-
-.features {
-    display: flex;
-    justify-content: center;
-}
-
-.feature-box {
-    background-color: white;
-    width: 300px;
-    padding: 30px;
-    margin: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    transition: transform 0.2s;
-}
-
-.feature-box:hover {
-    transform: scale(1.05);
-}
-
-.feature-box h3 {
-    font-size: 1.5rem;
-    color: #4CAF50;
-}
-
-.feature-box p {
-    margin-top: 10px;
-    color: #555;
-}
-
 
 @media (max-width: 768px) {
-    .sidebar {
-        width: 200px;
+    .welcome-section {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .header-image {
+        width: 100px;
+        height: 100px;
+    }
+
+    .header-text h2 {
+        font-size: 1.9rem;
+    }
+
+    .features {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .feature-box {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .logo {
+        font-size: 24px;
+    }
+
+    .nav-links a {
+        font-size: 0.9rem;
     }
 
     .main-content {
-        margin-left: 200px;
-        width: calc(100% - 200px);
+        padding: 80px 10px 20px;
     }
 
-    header h2 {
-        font-size: 28px;
+    .header-text h2 {
+        font-size: 1.2rem;
     }
 
-    .section {
-        width: 90%;
+    .feature-box {
         padding: 20px;
     }
 
-    .right-sidebar {
-        position: relative;
-        width: 100%;
-        height: auto;
-        margin-top: 20px;
+    .feature-box h3 {
+        font-size: 1.2rem;
+    }
+
+    .feature-box p {
+        font-size: 0.9rem;
     }
 }
 
     </style>
 </head>
 <body>
-    <div class="sidebar">
-        <h1 class="logo">Bahasa<span>Ku</span></h1>
-
-        <div class="profile-card">
-            <img src="profile.png" alt="User Photo" class="profile-pic">
-            <nav><a href="profile.html">Profil</a></nav>
-        </div>
-
-        <nav>
-            <ul>
-                <li><a href="home.html">Belajar</a></li>
-                <li><a href="kuis.html">Kuis</a></li>
-            </ul>
-        </nav>
-    </div>
+    <header>
+        <div class="logo">Luminara</div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="profile.html">Profil</a></li>
+            <li><a href="home.html">Beranda</a></li>
+            <li><a href="kuis.html">Kuis</a></li>
+            <li><a href="#" id="logout-btn">Logout</a></li>
+        </ul>
+        <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
+    </header>
 
     <div class="main-content">
-        <header>
+        <div class="welcome-section">
             <img src="panah.png" alt="Welcome Image" class="header-image">
             <div class="header-text">
                 <h2>Selamat Datang, Nama!</h2>
-                <h4>Teman Bahasaku</h4>
+                <p>Mengenal bahasa indonesia dengan belajar ejaan yang sesuai</p>
             </div>
-        </header>
-        <hr class="divider">        
+        </div>
+        
+        <div class="features">
+            <div class="feature-box">
+                <img src="buku-home.png" alt="Buku Icon" style="width: 50px; height: 50px; margin-bottom: 10px;">
+                <h3>Belajar Kosakata</h3>
+                <p>Asah kemampuan kosakata dengan latihan yang menyenangkan dan interaktif.</p>
+            </div>
+            <div class="feature-box">
+                <img src="card-home.png" alt="Kuis" style="width: 60px; height: 50px; margin-bottom: 10px;">
+                <h3>Kuis Bahasa</h3>
+                <p>Uji pengetahuanmu dengan kuis seru untuk semua level kemampuan.</p>
+            </div>
+            <div class="feature-box">
+                <img src="footsteps.png" alt="Jelajahi" style="width: 70px; height: 50px; margin-bottom: 10px;">
+                <h3>Jelajah Bahasa</h3>
+                <p>Memperluas pengetahuan bahasa indonesia dengan mengetahui pengetahuan-pengetahuan bahasa indonesia.</p>
+            </div>
+        </div>        
+        </div>
     </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js";
+        import { doc, getDoc } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js";
+
+        // Pastikan firebaseConfig sudah benar
+        const firebaseConfig = {
+            apiKey: "AIzaSyCBNu8V547_Eg5hg1_hmbuibGmTf5olOJg",
+            authDomain: "bahasaku-eb21d.firebaseapp.com",
+            projectId: "bahasaku-eb21d",
+            storageBucket: "bahasaku-eb21d.firebasestorage.app",
+            messagingSenderId: "636276077242",
+            appId: "1:636276077242:web:aa463e78c2e0385594c883",
+            measurementId: "G-RHC681N2XH"
+        };
+
+        // Inisialisasi aplikasi Firebase dengan konfigurasi yang sudah benar
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        const welcomeText = document.querySelector(".header-text h2");
+
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                const userRef = doc(db, "users", user.uid); // Asumsi ada koleksi `users` di Firestore
+                const userDoc = await getDoc(userRef);
+
+                if (userDoc.exists()) {
+                    const name = userDoc.data().name || "Pengguna";
+                    welcomeText.textContent = `Selamat Datang, ${name}!`;
+                } else {
+                    console.error("Data pengguna tidak ditemukan di Firestore.");
+                    welcomeText.textContent = "Selamat Datang, Pengguna!";
+                }
+            } else {
+                // Redirect ke halaman login jika tidak ada pengguna yang login
+                window.location.href = "login.html";
+            }
+        });
+    </script>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById("navLinks");
+            navLinks.classList.toggle("active");
+        }
+    </script>
 </body>
 </html>

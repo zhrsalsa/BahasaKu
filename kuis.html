@@ -1,10 +1,13 @@
+kuis.html
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script type="module" src="logout.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Kuis Bahasaku</title>
+    <title>Kuis</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         /* Basic Styling */
@@ -40,7 +43,6 @@
         .logo {
             font-size: 28px;
             font-weight: 600;
-            margin-left: 30px;
         }
 
         .logo span {
@@ -73,10 +75,10 @@
                 flex-direction: column;
                 gap: 15px;
                 position: absolute;
-                top: 50%;
+                top: 100%;
                 left: 0;
                 width: 100%;
-                background-color: rgb(73, 54, 111);
+                background-color: white;
                 padding: 20px;
             }
 
@@ -109,21 +111,50 @@
 
         .quiz-card {
             background-color: #ffffff;
+            border: 2px solid;
+            border-color: #e8e1e1;
             width: 400px;
             padding: 20px;
             border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 12px rgb(0, 0, 0, 0.1);
             display: flex;
             align-items: center;
             gap: 15px;
+            margin-bottom: 30px;
             transition: transform 0.3s;
         }
 
         .quiz-image {
-            width: 100px;
+            width: 105px;
             height: 160px;
             object-fit: cover;
         }
+
+        /* Efek untuk gambar setelah kuis selesai */
+        .quiz-card.active {
+            animation: active-glow 1.5s infinite alternate;
+            transform: translateY(-3px);
+        }
+
+        @keyframes active-glow {
+            0% {
+                box-shadow: 0 0 10px rgba(255, 215, 150, 0.7),
+                    0 0 20px rgba(255, 215, 150, 0.5),
+                    0 0 30px rgba(255, 215, 150, 0.3);
+            }
+            100% {
+                    box-shadow: 0 0 20px rgba(255, 215, 150, 1),
+                                0 0 30px rgba(255, 215, 150, 0.8),
+                                0 0 40px rgba(255, 215, 150, 0.6);
+            }
+        }
+
+        .quiz-card.disabled {
+            opacity: 0.5;
+            pointer-events: none;
+            box-shadow: none;
+        }
+
 
         .quiz-info {
             display: flex;
@@ -145,43 +176,55 @@
         }
 
         .quiz-button {
-            background-color: #FFD54F;
-            color: white;
+            background-color: #fce5c2;
+            color: rgb(186, 59, 89);
             border: none;
             padding: 8px 16px;
             font-size: 0.9rem;
+            font-family: 'Poppins';
             font-weight: 600;
             border-radius: 8px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         .quiz-button:hover {
-            background-color: #ffcc00;
+            color: rgb(73, 54, 111);
+            background-color: #e0b8df;
+            box-shadow: 0 0 10px rgba(255, 215, 150, 0.7), 
+                        0 0 20px rgba(255, 215, 150, 0.5), 
+                        0 0 30px rgba(255, 215, 150, 0.3);
         }
-
+        
         .quiz-button:active {
             transform: scale(0.98);
         }
+
+        .quiz-card.completed .quiz-button {
+            background-color: #c2e5fc;
+            color: #397bb8;
+        }
+
     </style>
 </head>
 <body>
     <header>
         <nav class="navbar">
             <div class="container">
-                <h1 class="logo">Bahasa<span>Ku</span></h1>
+                <h1 class="logo">Luminara</h1>
                 <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
                 <ul class="nav-links" id="navLinks">
                     <li><a href="profile.html">Profil</a></li>
-                    <li><a href="home.html">Belajar</a></li>
+                    <li><a href="home.html">Beranda</a></li>
                     <li><a href="kuis.html">Kuis</a></li>
+                    <li><a href="#" id="logout-btn">Logout</a></li>
                 </ul>
             </div>
         </nav>
     </header>
 
     <div class="content">
-        <h2>Pilih Tantangan</h2>
+        <h2></h2>
         <div class="button-container">
             <div class="quiz-card" onclick="location.href='huruf-kapital.html'">
                 <img src="card.png" alt="Quiz Image" class="quiz-image">
@@ -190,24 +233,8 @@
                     <span>5 Soal</span>
                 </div>
                 <button class="quiz-button">Mulai</button>
-            </div>            
-            <div class="quiz-card" onclick="location.href='huruf-kapital.html'">
-                <img src="card.png" alt="Quiz Image" class="quiz-image">
-                <div class="quiz-info">
-                    <p>Huruf Kapital</p>
-                    <span>5 Soal</span>
-                </div>
-                <button class="quiz-button">Mulai</button>
-            </div>            
-            <div class="quiz-card" onclick="location.href='katabaku.html'">
-                <img src="card.png" alt="Quiz Image" class="quiz-image">
-                <div class="quiz-info">
-                    <p>Huruf Miring</p>
-                    <span>5 Soal</span>
-                </div>
-                <button class="quiz-button">Mulai</button>
-            </div>
-            <div class="quiz-card" onclick="location.href='pilgan2.html'">
+            </div>                        
+            <div class="quiz-card" onclick="location.href='huruf-tebal.html'">
                 <img src="card.png" alt="Quiz Image" class="quiz-image">
                 <div class="quiz-info">
                     <p>Huruf Tebal</p>
@@ -215,7 +242,7 @@
                 </div>
                 <button class="quiz-button">Mulai</button>
             </div>
-            <div class="quiz-card" onclick="location.href='pilgan2.html'">
+            <div class="quiz-card" onclick="location.href='imbuhan.html'">
                 <img src="card.png" alt="Quiz Image" class="quiz-image">
                 <div class="quiz-info">
                     <p>Penulisan Imbuhan</p>
@@ -223,7 +250,15 @@
                 </div>
                 <button class="quiz-button">Mulai</button>
             </div>
-            <div class="quiz-card" onclick="location.href='pilgan2.html'">
+            <div class="quiz-card" onclick="location.href='unsur-terikat.html'">
+                <img src="card.png" alt="Quiz Image" class="quiz-image">
+                <div class="quiz-info">
+                    <p>Unsur Terikat</p>
+                    <span>5 Soal</span>
+                </div>
+                <button class="quiz-button">Mulai</button>
+            </div> 
+            <div class="quiz-card" onclick="location.href='serapan.html'">
                 <img src="card.png" alt="Quiz Image" class="quiz-image">
                 <div class="quiz-info">
                     <p>Unsur Serapan</p>
@@ -231,7 +266,7 @@
                 </div>
                 <button class="quiz-button">Mulai</button>
             </div>
-            <div class="quiz-card" onclick="location.href='pilgan2.html'">
+            <div class="quiz-card" onclick="location.href='kata-majemuk.html'">
                 <img src="card.png" alt="Quiz Image" class="quiz-image">
                 <div class="quiz-info">
                     <p>Penulisan Kata Majemuk</p>
@@ -243,10 +278,98 @@
     </div>
 
     <script>
+        
         function toggleMenu() {
             const navLinks = document.getElementById("navLinks");
             navLinks.classList.toggle("active");
         }
+
+        
+        // Function to initialize the quiz cards' status
+        function initializeQuizCards() {
+            const quizzes = ["huruf-kapital", "huruf-tebal", "imbuhan", "unsur-terikat", "serapan", "kata-majemuk"];
+            quizzes.forEach((quiz, index) => {
+                const quizCard = document.querySelector(`.quiz-card[onclick="location.href='${quiz}.html'"]`);
+                const button = quizCard.querySelector(".quiz-button");
+                const isCompleted = localStorage.getItem(quiz);
+
+                // Ubah label tombol berdasarkan status
+                if (isCompleted === "completed") {
+                    button.textContent = "Ulangi"; // Tombol untuk kuis selesai
+                } else {
+                    button.textContent = "Mulai"; // Tombol default untuk kuis baru
+                    quizCard.classList.add("active"); // Tambahkan efek sinar berpendar
+                }
+
+                // Atur aksesibilitas kuis
+                if (index === 0 || localStorage.getItem(quizzes[index - 1]) === "completed") {
+                    quizCard.classList.remove("disabled");
+                    quizCard.onclick = function() {
+                        location.href = `${quiz}.html`;
+                    };
+                } else {
+                    quizCard.classList.add("disabled");
+                    quizCard.classList.remove("active");
+                    quizCard.onclick = function(event) {
+                        event.preventDefault();
+                        alert("Selesaikan kuis sebelumnya untuk membuka kuis ini.");
+                    };
+                }
+            });
+        }
+
+    function updateQuizCards(progress) {
+        const quizzes = ["huruf-kapital", "huruf-tebal", "imbuhan", "terikat", "serapan", "kata-majemuk"];
+        quizzes.forEach((quiz, index) => {
+            const quizCard = document.querySelector(`.quiz-card[onclick="location.href='${quiz}.html'"]`);
+            const quizStatus = progress[quiz];
+
+            if (quizStatus === 'completed') {
+                quizCard.classList.add('completed');
+                quizCard.classList.remove('disabled');
+                quizCard.onclick = function() {
+                    location.href = `${quiz}.html`;
+                };
+            } else if (index === 0 || progress[quizzes[index - 1]] === 'completed') {
+                quizCard.classList.remove('disabled');
+                quizCard.onclick = function() {
+                    location.href = `${quiz}.html`;
+                };
+            } else {
+                quizCard.classList.add('disabled');
+                quizCard.onclick = function(event) {
+                    event.preventDefault();
+                    alert("Selesaikan kuis sebelumnya untuk membuka kuis ini.");
+                };
+            }
+        });
+    }
+
+        // Menandai kuis sebagai selesai di localStorage
+    function markQuizAsCompleted(quizName) {
+        localStorage.setItem(quizName, "completed");
+
+        // Cari kartu kuis yang bersangkutan dan tambahkan kelas 'completed'
+        const quizCard = document.querySelector(`.quiz-card[onclick="location.href='${huruf-kapital}.html'"]`);
+        if (quizCard) {
+            quizCard.classList.add("completed");
+        }
+    }
+
+    // Run the initialize function when the page loads
+    document.addEventListener("DOMContentLoaded", initializeQuizCards);
+
+    // Panggil fungsi ini setelah setiap kuis selesai
+    markQuizAsCompleted("huruf-kapital"); // contoh untuk halaman 'Huruf Kapital'
+
     </script>
+
+    <style>
+        .quiz-card.disabled {
+            box-shadow: none;
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    </style>
 </body>
 </html>

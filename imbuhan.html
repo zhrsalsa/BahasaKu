@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuis Imbuhan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #1e1e2e;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 600px;
+            text-align: center;
+            position: relative;
+        }
+
+        .new-word {
+            font-size: 14px;
+            color: #b39ddb;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .options {
+            display: flex;
+            justify-content: space-around;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .option-card {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 8px;
+            width: 30%;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .option-text {
+            font-size: 16px;
+            color: #fff;
+        }
+
+        .button {
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: none; /* Initially hidden */
+            
+            /* Positioning to the bottom right */
+        }
+
+        #next-button {
+            position: fixed;
+            color: #fff;
+            background: #4CAF50;
+            padding: 10px 20px;
+            border-radius: 10px;
+            border-style: none;
+            font-size: 15px;
+            cursor: pointer;
+            bottom: 70px;
+            z-index: 15;
+        }
+
+        .progress-bar {
+            width: calc(100% - 50px); /* Adjust width to account for close button */
+            max-width: 600px;
+            height: 8px;
+            background-color: #444;
+            border-radius: 5px;
+            margin: 50px auto;
+            position: fixed;
+            top: 0;
+            left: 30px;
+            right: 0;
+        }
+
+        .progress-bar-fill {
+            width: 0%;
+            height: 100%;
+            background-color: #4CAF50;
+            transition: width 0.3s;
+        }
+
+        /* Correct/incorrect answer styling */
+        .correct {
+            background-color: #4CAF50 !important;
+        }
+
+        .incorrect {
+            background-color: #D32F2F !important;
+        }
+
+        /* Pop-up styling */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: whitesmoke;
+            color: black;
+            font-weight: bold;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            z-index: 10;
+        }
+
+        .popup button {
+            display: flex;
+            flex-direction: row;
+            justify-self: center;
+            background-color: #4CAF50;
+            color: #fff;
+            font-weight: bold;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+            margin-bottom: 2px;
+        }
+
+        .popup button.exit {
+            background-color: #D32F2F;
+        }
+
+        /* Dim background when pop-up is active */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.3);
+            z-index: 5;
+        }
+
+        /* Positioning for the close button */
+        .close-button {
+            color: #fff;
+            background: none;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            position: fixed;
+            top: 40px;
+            left: 40px;
+            z-index: 15;
+        }
+        @media (max-width: 768px) {
+            .close-button {
+                top: 43px;
+                left: 10px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="overlay" id="overlay"></div>
+    <div class="container">
+        <button class="close-button" onclick="showPopup()">X</button>
+        <div class="progress-bar">
+            <div class="progress-bar-fill"></div>
+        </div>
+
+        <!-- Soal -->
+        <div class="new-word">Pertanyaan Baru</div>
+        <h1 id="question-text">Kalimat mana yang menggunakan huruf kapital dengan benar?</h1>
+
+        <!-- Pilihan jawaban -->
+        <div class="options">
+            <div class="option-card" onclick="selectOption(0)">
+                <p class="option-text" id="option-0">Option 1</p>
+            </div>
+            <div class="option-card" onclick="selectOption(1)">
+                <p class="option-text" id="option-1">Option 2</p>
+            </div>
+            <div class="option-card" onclick="selectOption(2)">
+                <p class="option-text" id="option-2">Option 3</p>
+            </div>
+        </div>
+
+        <!-- Button to check answer and move to the next question -->
+        <div id="next-button" onclick="nextQuestion()">Lanjut</div>
+    </div>
+
+    <div class="popup" id="popup">
+        <p>Apakah kamu yakin ingin keluar?</p>
+        <p>Jawabanmu tidak dapat tersimpan.</p>
+        <button onclick="hidePopup()" style="font-family: Poppins;">Tetap mengerjakan</button>
+        <button class="exit" onclick="exitQuiz()" style="font-family: Poppins;">Keluar</button>
+    </div>
+    <script>
+        // Quiz data
+        const questions = [
+            {
+                question: "Kalimat mana yang menggunakan huruf kapital dengan benar?",
+                options: ["saya pergi ke Jakarta.", "Kemarin saya bertemu Andi.", "Hari ini adalah hari rabu."],
+                correctAnswer: 1
+            },
+            {
+                question: "Pilih kalimat yang benar:",
+                options: ["Dia tinggal di bandung.", "saya suka belajar.", "Ibu pergi ke Pasar."],
+                correctAnswer: 2
+            },
+            {
+                question: "Huruf kapital digunakan di ...",
+                options: ["awal kalimat.", "nama diri.", "keduanya benar."],
+                correctAnswer: 2
+            },
+            {
+                question: "Kalimat mana yang benar?",
+                options: ["Bapak sedang membaca koran.", "anak-anak bermain bola.", "Saya tinggal di Surabaya."],
+                correctAnswer: 2
+            },
+            {
+                question: "Pilih yang benar:",
+                options: ["ini adalah hari minggu.", "Kami berangkat ke Bali.", "Selamat tahun baru."],
+                correctAnswer: 1
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+        let selectedOption = null;
+        let score = 0;
+
+        
+        // Initialize the quiz
+        function loadQuestion() {
+            const savedQuestionIndex = localStorage.getItem('currentQuestionIndex');
+            if (savedQuestionIndex !== null) {
+                currentQuestionIndex = parseInt(savedQuestionIndex);
+            }
+
+            const question = questions[currentQuestionIndex];
+            document.getElementById('question-text').textContent = question.question;
+            question.options.forEach((option, index) => {
+                document.getElementById(`option-${index}`).textContent = option;
+            });
+            document.getElementById('next-button').style.display = 'none';
+            document.querySelectorAll('.option-card').forEach(card => {
+                card.classList.remove('correct', 'incorrect');
+                card.style.pointerEvents = 'auto';
+            });
+
+            // Update progress bar
+            const progress = ((currentQuestionIndex) / questions.length) * 100;
+            document.querySelector('.progress-bar-fill').style.width = `${progress}%`;
+        }
+
+        function selectOption(optionNumber) {
+            selectedOption = optionNumber;
+            checkAnswer();
+        }
+
+        function checkAnswer() {
+            const question = questions[currentQuestionIndex];
+            const isCorrect = selectedOption === question.correctAnswer;
+            
+            document.querySelectorAll('.option-card').forEach((card, index) => {
+                card.classList.remove('correct', 'incorrect');
+                if (index === question.correctAnswer) {
+                    card.classList.add('correct'); // Beri warna hijau pada jawaban benar
+                } else if (index === selectedOption) {
+                    card.classList.add('incorrect'); // Beri warna merah pada jawaban salah
+                }
+                card.style.pointerEvents = 'none'; // Menonaktifkan klik pada opsi
+            });
+
+            if (isCorrect) score++;
+            document.getElementById('next-button').style.display = 'inline-block';
+        }
+
+
+        function nextQuestion() {
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                // Simpan currentQuestionIndex ke localStorage setiap kali pindah ke soal berikutnya
+                localStorage.setItem('currentQuestionIndex', currentQuestionIndex);
+                loadQuestion();
+            } else {
+                alert(`Quiz selesai! Skor Anda: ${score} dari ${questions.length}`);
+                localStorage.removeItem('currentQuestionIndex'); // Hapus data soal terakhir saat kuis selesai
+                window.location.href = "kuis.html";
+            }
+        }
+        // Load the first question on page load
+        loadQuestion();
+        function showPopup() {
+            document.getElementById('popup').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+        }
+
+        // Function to hide the pop-up confirmation
+        function hidePopup() {
+            document.getElementById('popup').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        }
+
+        // Function to exit the quiz
+        function exitQuiz() {
+            window.location.href = "kuis.html";
+            // Add any additional actions you want on exit, e.g., redirect or close the page
+        }
+    </script>
+</body>
+</html>
