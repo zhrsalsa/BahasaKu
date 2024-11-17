@@ -39,10 +39,6 @@
             font-weight: 600;
         }
 
-        .logo span {
-            color: #ffcc00;
-        }
-
         .nav-links {
             list-style: none;
             display: flex;
@@ -144,7 +140,7 @@
         flex-direction: column;
         position: absolute;
         top: 60px;
-        left: 0;
+        left: 20px;
         width: 100%;
         background-color: white;
         padding: 10px;
@@ -240,9 +236,9 @@
     <header>
         <div class="logo">Luminara</div>
         <ul class="nav-links" id="navLinks">
-            <li><a href="profile.html">Profil</a></li>
             <li><a href="home.html">Beranda</a></li>
             <li><a href="kuis.html">Kuis</a></li>
+            <li><a href="profile.html">Profil</a></li>
             <li><a href="#" id="logout-btn">Logout</a></li>
         </ul>
         <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
@@ -263,12 +259,12 @@
                 <h3>Belajar Kosakata</h3>
                 <p>Asah kemampuan kosakata dengan latihan yang menyenangkan dan interaktif.</p>
             </div>
-            <div class="feature-box">
+            <div class="feature-box" onclick="location.href='kuis.html'">
                 <img src="card-home.png" alt="Kuis" style="width: 60px; height: 50px; margin-bottom: 10px;">
                 <h3>Kuis Bahasa</h3>
                 <p>Uji pengetahuanmu dengan kuis seru untuk semua level kemampuan.</p>
             </div>
-            <div class="feature-box">
+            <div class="feature-box" onclick="location.href='jelajah.html'">
                 <img src="footsteps.png" alt="Jelajahi" style="width: 70px; height: 50px; margin-bottom: 10px;">
                 <h3>Jelajah Bahasa</h3>
                 <p>Perluas pengetahuan bahasa indonesia</p>
@@ -276,6 +272,7 @@
         </div>        
         </div>
     </div>
+    
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js";
@@ -307,7 +304,8 @@
 
                 if (userDoc.exists()) {
                     const name = userDoc.data().name || "Pengguna";
-                    welcomeText.textContent = `Selamat Datang, ${name}!`;
+                    // Mengubah nama menjadi huruf kapital
+                    welcomeText.textContent = `Selamat Datang, ${name.toUpperCase()}!`;
                 } else {
                     console.error("Data pengguna tidak ditemukan di Firestore.");
                     welcomeText.textContent = "Selamat Datang, Pengguna!";
@@ -317,6 +315,7 @@
                 window.location.href = "login.html";
             }
         });
+
     </script>
 
     <script>

@@ -121,6 +121,13 @@ kuis.html
             margin-bottom: 30px;
             transition: transform 0.3s;
         }
+        .quiz-actions {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: flex-end;
+            margin-top: auto; /* Menempatkan tombol di bagian bawah */
+        }
 
         .quiz-image {
             width: 105px;
@@ -210,9 +217,9 @@ kuis.html
         <h1 class="logo">Luminara</h1>
         <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
         <ul class="nav-links" id="navLinks">
-            <li><a href="profile.html">Profil</a></li>
             <li><a href="home.html">Beranda</a></li>
             <li><a href="kuis.html">Kuis</a></li>
+            <li><a href="profile.html">Profil</a></li>
             <li><a href="#" id="logout-btn">Logout</a></li>
         </ul>
     </header>
@@ -226,7 +233,9 @@ kuis.html
                     <p>Huruf Kapital</p>
                     <span>5 Soal</span>
                 </div>
-                <button class="quiz-button">Mulai</button>
+                <div class="quiz-actions">
+                    <button class="quiz-button">Mulai</button>
+                </div>
             </div>                        
             <div class="quiz-card" onclick="location.href='huruf-tebal.html'">
                 <img src="card.png" alt="Quiz Image" class="quiz-image">
@@ -234,7 +243,9 @@ kuis.html
                     <p>Huruf Tebal</p>
                     <span>5 Soal</span>
                 </div>
-                <button class="quiz-button">Mulai</button>
+                <div class="quiz-actions">
+                    <button class="quiz-button">Mulai</button>
+                </div>
             </div>
             <div class="quiz-card" onclick="location.href='imbuhan.html'">
                 <img src="card.png" alt="Quiz Image" class="quiz-image">
@@ -242,32 +253,36 @@ kuis.html
                     <p>Penulisan Imbuhan</p>
                     <span>5 Soal</span>
                 </div>
-                <button class="quiz-button">Mulai</button>
-            </div>
+                <div class="quiz-actions">
+                    <button class="quiz-button">Mulai</button>
+                </div>            </div>
             <div class="quiz-card" onclick="location.href='unsur-terikat.html'">
                 <img src="card.png" alt="Quiz Image" class="quiz-image">
                 <div class="quiz-info">
                     <p>Unsur Terikat</p>
                     <span>5 Soal</span>
                 </div>
-                <button class="quiz-button">Mulai</button>
-            </div> 
+                <div class="quiz-actions">
+                    <button class="quiz-button">Mulai</button>
+                </div>            </div> 
             <div class="quiz-card" onclick="location.href='serapan.html'">
                 <img src="card.png" alt="Quiz Image" class="quiz-image">
                 <div class="quiz-info">
                     <p>Unsur Serapan</p>
                     <span>5 Soal</span>
                 </div>
-                <button class="quiz-button">Mulai</button>
-            </div>
+                <div class="quiz-actions">
+                    <button class="quiz-button">Mulai</button>
+                </div>            </div>
             <div class="quiz-card" onclick="location.href='kata-majemuk.html'">
                 <img src="card.png" alt="Quiz Image" class="quiz-image">
                 <div class="quiz-info">
                     <p>Penulisan Kata Majemuk</p>
                     <span>5 Soal</span>
                 </div>
-                <button class="quiz-button">Mulai</button>
-            </div>        
+                <div class="quiz-actions">
+                    <button class="quiz-button">Mulai</button>
+                </div>            </div>        
         </div>
     </div>
 

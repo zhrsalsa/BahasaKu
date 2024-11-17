@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jelajah Bahasa</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+    color: rgb(73, 54, 111);
+}
+
+        /* Navbar Styling */
+        header {
+            background-color: rgb(255, 255, 255);
+            color: rgb(73, 54, 111);
+            padding: 20px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: rgb(73, 54, 111);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .hamburger {
+            font-size: 24px;
+            cursor: pointer;
+            display: none;
+            color: rgb(73, 54, 111);
+        }
+
+main {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+section#facts {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.fact-card {
+    background-color: #f9f9f9;
+    border: 1px solid rgb(73, 54, 111);
+    border-radius: 8px;
+    padding: 15px;
+    width: 300px;
+    margin: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: rgb(73, 54, 111);
+    color: #ffffff;
+}
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Luminara</div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="home.html">Beranda</a></li>
+            <li><a href="kuis.html">Kuis</a></li>
+            <li><a href="profile.html">Profil</a></li>
+            <li><a href="#" id="logout-btn">Logout</a></li>
+        </ul>
+        <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
+    </header>
+    <main>
+        <section id="facts">
+            <!-- Fakta akan diisi oleh JavaScript -->
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Luminara. Semua Hak Dilindungi.</p>
+    </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+    const facts = [
+        "Bahasa Indonesia berasal dari Melayu dan resmi menjadi bahasa nasional pada tahun 1945.",
+        "Bahasa Indonesia menyerap kata dari berbagai bahasa seperti Belanda, Arab, dan Inggris.",
+        "Tidak ada gender gramatikal dalam Bahasa Indonesia.",
+        "Bahasa Indonesia menggunakan sistem afiksasi unik seperti awalan, akhiran, dan sisipan.",
+        "Bahasa Indonesia memiliki variasi di berbagai daerah karena pengaruh bahasa lokal."
+    ];
+
+    const factsContainer = document.getElementById("facts");
+
+    facts.forEach((fact, index) => {
+        const card = document.createElement("div");
+        card.className = "fact-card";
+        card.innerHTML = `<h3>Fakta ${index + 1}</h3><p>${fact}</p>`;
+        factsContainer.appendChild(card);
+    });
+});
+    </script>
+</body>
+</html>
