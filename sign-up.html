@@ -38,18 +38,20 @@
       }
     };
   
+    
     document.addEventListener("DOMContentLoaded", () => {
       const form = document.querySelector(".sign-in form");
       form.addEventListener("submit", async (e) => {
         e.preventDefault();
-        const username = document.querySelector("#username").value;
-        const email = document.querySelector("#email").value;
-        const password = document.querySelector("#password").value;
-  
+        const username = document.querySelector("#username").value.trim();
+        const email = document.querySelector("#email").value.trim();
+        const password = document.querySelector("#password").value.trim();
+
         try {
           const userCredential = await createUserWithEmailAndPassword(auth, email, password);
           const user = userCredential.user;
-          createUserInFirestore(user, username);  // Pass username ke Firestore
+          
+          await createUserInFirestore(user, username); // Simpan nama dan email
           alert("Registrasi berhasil! Anda akan diarahkan ke halaman login.");
           window.location.href = "login.html";
         } catch (error) {

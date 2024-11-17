@@ -305,7 +305,7 @@
                 if (userDoc.exists()) {
                     const name = userDoc.data().name || "Pengguna";
                     // Mengubah nama menjadi huruf kapital
-                    welcomeText.textContent = `Selamat Datang, ${name.toUpperCase()}!`;
+                    welcomeText.textContent = `Selamat datang, ${name.toUpperCase()}!`;
                 } else {
                     console.error("Data pengguna tidak ditemukan di Firestore.");
                     welcomeText.textContent = "Selamat Datang, Pengguna!";

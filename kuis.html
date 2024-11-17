@@ -209,6 +209,12 @@ kuis.html
             background-color: #c2e5fc;
             color: #397bb8;
         }
+        
+        .quiz-card.disabled {
+            box-shadow: none;
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
 
     </style>
 </head>
@@ -372,13 +378,5 @@ kuis.html
     markQuizAsCompleted("huruf-kapital"); // contoh untuk halaman 'Huruf Kapital'
 
     </script>
-
-    <style>
-        .quiz-card.disabled {
-            box-shadow: none;
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-    </style>
 </body>
 </html>

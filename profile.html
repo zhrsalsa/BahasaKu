@@ -271,28 +271,31 @@
         const db = getFirestore(app);
       
         async function loadUserProfile(user) {
-          try {
-            const userRef = doc(db, "users", user.uid);
-            const userSnap = await getDoc(userRef);
-      
-            if (userSnap.exists()) {
-              const userData = userSnap.data();
-              document.getElementById("name").value = userData.name || "";
-              document.getElementById("email").value = user.email;
-            } else {
-              // Jika dokumen tidak ada, buat dokumen baru
-              await setDoc(userRef, {
-                name: user.displayName || "",
-                email: user.email,
-                uid: user.uid
-              });
-              document.getElementById("name").value = user.displayName || "";
-              document.getElementById("email").value = user.email;
+            try {
+                const userRef = doc(db, "users", user.uid);
+                const userSnap = await getDoc(userRef);
+
+                const displayName = user.displayName || ""; // Fallback ke Firebase Authentication
+
+                if (userSnap.exists()) {
+                const userData = userSnap.data();
+                document.getElementById("name").value = userData.name || displayName;
+                document.getElementById("email").value = user.email;
+                } else {
+                // Jika Firestore tidak memiliki data, simpan dari Firebase Authentication
+                await setDoc(userRef, {
+                    name: displayName,
+                    email: user.email,
+                    uid: user.uid
+                });
+                document.getElementById("name").value = displayName;
+                document.getElementById("email").value = user.email;
+                }
+            } catch (error) {
+                console.error("Error fetching user data:", error);
             }
-          } catch (error) {
-            console.error("Error fetching user data:", error);
-          }
         }
+
       
         onAuthStateChanged(auth, async (user) => {
           if (user) {
