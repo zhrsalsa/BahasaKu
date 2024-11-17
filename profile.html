@@ -253,7 +253,7 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
         import { getAuth, onAuthStateChanged, signOut, updatePassword, reauthenticateWithCredential, EmailAuthProvider, updateEmail } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
-        import { getFirestore, doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js";
+        import { getFirestore, doc, getDoc, updateDoc, setDoc } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js";
     
         const firebaseConfig = {
             apiKey: "AIzaSyCBNu8V547_Eg5hg1_hmbuibGmTf5olOJg",
@@ -271,19 +271,28 @@
     
         async function loadUserProfile(user) {
             try {
-                const userRef = doc(db, "users", user.uid);
+                const userRef = doc(db, "users", user.uid); // Ambil dokumen user berdasarkan uid
                 const userSnap = await getDoc(userRef);
+
                 if (userSnap.exists()) {
+                    // Jika dokumen ada, tampilkan datanya
                     const userData = userSnap.data();
                     document.getElementById("name").value = userData.name || "";
                     document.getElementById("email").value = user.email;
                 } else {
-                    console.error("No such document in Firestore!");
+                    // Jika dokumen tidak ada, buat dokumen baru
+                    await setDoc(userRef, {
+                        name: user.displayName || "", // Gunakan displayName dari auth jika ada
+                        email: user.email,
+                    });
+                    document.getElementById("name").value = user.displayName || "";
+                    document.getElementById("email").value = user.email;
                 }
             } catch (error) {
                 console.error("Error fetching user data:", error);
             }
         }
+
     
         onAuthStateChanged(auth, async (user) => {
             if (user) {
@@ -303,18 +312,24 @@
 
             try {
                 const userRef = doc(db, "users", user.uid);
+                const userSnap = await getDoc(userRef);
 
-                // Update name in Firestore
-                await updateDoc(userRef, { name });
+                // Pastikan dokumen ada, jika tidak buat dokumen baru
+                if (!userSnap.exists()) {
+                    await setDoc(userRef, { name, email });
+                } else {
+                    // Jika dokumen ada, perbarui nama
+                    await updateDoc(userRef, { name });
+                }
 
-                // Update email
+                // Update email jika ada perubahan
                 if (email !== user.email) {
                     await updateEmail(user, email);
                     await updateDoc(userRef, { email });
                     alert("Email berhasil diperbarui!");
                 }
 
-                // Update password
+                // Update password jika diisi
                 if (password) {
                     await updatePassword(user, password);
                     alert("Password berhasil diperbarui!");
@@ -324,7 +339,7 @@
             } catch (error) {
                 console.error("Error updating profile:", error);
 
-                // Handle specific errors
+                // Tangani error spesifik
                 if (error.code === "auth/requires-recent-login") {
                     alert(
                         "Anda perlu login ulang untuk mengubah informasi sensitif. Silakan logout dan login kembali."
@@ -334,6 +349,7 @@
                 }
             }
         });
+
 
     
         document.getElementById("cancel").addEventListener("click", () => {

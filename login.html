@@ -55,9 +55,6 @@
       justify-content: right;
       align-items: center;
       height: 100vh;
-      background-image: url('background-signin.png');
-      background-position: center;
-      background-size: cover;
     }
     
     header {
@@ -102,6 +99,14 @@
       width: 400px;
       box-shadow: 0 4px 10px rgba(197, 139, 39, 0.648);
     }
+
+    .wand-image {
+      width: 550px; /* Adjust size as needed */
+      height: auto;
+      margin-right: 20px;
+      margin-bottom: 100px;
+    }
+
     
     h2 {
       font-size: 24px;
@@ -155,6 +160,10 @@
       margin-top: 10px;
       font-size: smaller;
     }
+
+    p span {
+      font-weight: bold;
+    }
     
     a {
       color: rgb(73, 54, 111);
@@ -174,12 +183,18 @@
 
       .form-container {
           flex-direction: column;
+          align-items: center;
       }
     
       .form-box {
         justify-self: center;
           width: 100%;
           margin-bottom: 20px;
+      }
+
+      .wand-image {
+        margin-right: 0;
+        margin-bottom: 20px;
       }
     }
   </style>
@@ -194,6 +209,7 @@
   </header>
   <div class="container">
     <div class="form-container">
+      <img src="wand.png" alt="Magic Wand" class="wand-image">
       <div class="form-box log-in">
         <h2>Login</h2>
         <form action="#">
@@ -206,10 +222,10 @@
             <input type="password" id="password" name="password" required>
           </div>
           <button type="submit" class="btn" style="font-family: Poppins;">Login</button>
-          <p>Belum punya akun? <a href="signin.html">Sign in</a></p>
+          <p>Belum punya akun? <a href="sign-up.html"><span>Sign Up</span></a></p>
         </form>
       </div>
     </div>
-  </div>
+  </div>  
 </body>
 </html>
