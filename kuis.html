@@ -25,19 +25,17 @@ kuis.html
 
         /* Navbar Styling */
         header {
-            background-color: white;
+            background-color: rgb(255, 255, 255);
             color: rgb(73, 54, 111);
             padding: 20px;
             position: fixed;
             top: 0;
             width: 100%;
             z-index: 1000;
-        }
-
-        .navbar .container {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         .logo {
@@ -209,18 +207,14 @@ kuis.html
 </head>
 <body>
     <header>
-        <nav class="navbar">
-            <div class="container">
-                <h1 class="logo">Luminara</h1>
-                <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
-                <ul class="nav-links" id="navLinks">
-                    <li><a href="profile.html">Profil</a></li>
-                    <li><a href="home.html">Beranda</a></li>
-                    <li><a href="kuis.html">Kuis</a></li>
-                    <li><a href="#" id="logout-btn">Logout</a></li>
-                </ul>
-            </div>
-        </nav>
+        <h1 class="logo">Luminara</h1>
+        <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="profile.html">Profil</a></li>
+            <li><a href="home.html">Beranda</a></li>
+            <li><a href="kuis.html">Kuis</a></li>
+            <li><a href="#" id="logout-btn">Logout</a></li>
+        </ul>
     </header>
 
     <div class="content">

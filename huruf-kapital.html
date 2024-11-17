@@ -135,18 +135,20 @@
         }
 
         .popup button {
+            width: 130px;
             display: flex;
-            flex-direction: row;
-            justify-self: center;
+            justify-content: center;
+            align-items: center;
+            flex-direction:column;
             background-color: #4CAF50;
             color: #fff;
-            font-weight: bold;
             border: none;
             padding: 10px 20px;
             border-radius: 5px;
             cursor: pointer;
             margin: 10px;
             margin-bottom: 2px;
+            font-family: 'Poppins';
         }
 
         .popup button.exit {
@@ -260,8 +262,10 @@
         <img src="candle.png" alt="Candle Image" style="width: 50px; height: auto; margin: 10px 0;" class="popup-img">
         <p>Apakah kamu yakin ingin keluar?</p>
         <p>Jawabanmu tidak dapat tersimpan.</p>
-        <button class="stay">Tetap mengerjakan</button>
-        <button class="exit">Keluar</button>
+        <div class="popup-buttons">
+            <button class="exit">Keluar</button>
+            <button class="stay">Selesai</button>
+        </div>
     </div>
 
     <div class="quiz-result-popup" id="quiz-result-popup">
