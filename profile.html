@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Profile - Luminara</title>
     <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -19,11 +20,11 @@
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            padding: 20px;
         }
 
+        /* Navbar Styling */
         header {
-            background-color: white;
+            background-color: rgb(255, 255, 255);
             color: rgb(73, 54, 111);
             padding: 20px;
             position: fixed;
@@ -61,22 +62,24 @@
             color: rgb(73, 54, 111);
         }
 
+        /* Main Content Wrapper Styling */
         .content-wrapper {
             display: flex;
             align-items: center;
             justify-content: center;
-            max-width: 1000px;
+            max-width: 1000px; /* Set a max-width for the wrapper */
             margin: 30px auto;
-            flex-wrap: wrap;
         }
 
+        /* Wizard Image Styling */
         .wizard-image {
-            width: 350px;
+            width: 350px; /* Adjust the width of the image */
             margin-right: 100px;
         }
 
+        /* Main Content Styling */
         .main-content {
-            padding: 20px;
+            padding: 0px 20px 20px;
             width: 400px;
             max-width: 600px;
             background-color: white;
@@ -91,8 +94,22 @@
             text-align: center;
         }
 
+        .profile-container {
+            text-align: center;
+            padding: 20px;
+            width: 400px;
+        }
+
+        .profile-container h2 {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        /* Profile Form Styling */
         .form-group {
             margin-bottom: 15px;
+            text-align: left;
         }
 
         .form-group label {
@@ -119,61 +136,89 @@
 
         .btn-container {
             display: flex;
-            justify-content: space-between;
+            justify-content: space-between; /* This will place the buttons on opposite sides */
             gap: 20px;
         }
 
         .btn-save {
             color: white;
             background-color: rgb(73, 54, 111);
+            border: none;
             padding: 10px;
             font-size: 16px;
             font-weight: 600;
             border-radius: 5px;
             cursor: pointer;
             transition: all 0.3s ease;
-            width: 48%;
+            display: block;
+            width: 30%;
         }
 
         .btn-save#cancel {
-            background-color: #D32F2F;
+            background-color:#D32F2F;
             color: white;
         }
 
         .btn-save:hover {
-            box-shadow: 0 0 15px rgba(255, 255, 100, 0.6);
+            box-shadow: 0 0 15px rgba(255, 255, 100, 0.6); 
         }
 
+        /* Responsive Navbar */
         @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                padding: 10px;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            /* Stack the content and wizard image on smaller screens */
             .content-wrapper {
                 flex-direction: column;
                 align-items: center;
             }
 
             .wizard-image {
-                width: 200px;
+                width: 180px; /* Adjust the image size for mobile */
                 margin-right: 0;
-                margin-bottom: 20px;
+                margin-bottom: 20px; /* Spacing between image and form */
             }
 
             .main-content {
-                width: 100%;
+                width: 90%; /* Ensure the form scales on smaller screens */
             }
 
             .btn-container {
-                flex-direction: column;
-                gap: 10px;
+                flex-direction: column; /* Stack buttons for better space on mobile */
             }
 
             .btn-save {
-                width: 100%;
+                width: 100%; /* Ensure buttons take full width */
+                margin-bottom: 10px; /* Added space between buttons */
+            }
+
+            .btn-save#cancel {
+                width: 100%; /* Ensure buttons take full width */
+                margin-bottom: 10px;
             }
         }
     </style>
 </head>
 <body>
     <header>
-        <div class="logo">Luminara</div>
+        <div class="logo">Luminara<span></span></div>
         <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
         <ul class="nav-links" id="navLinks">
             <li><a href="home.html">Beranda</a></li>
@@ -186,7 +231,7 @@
     <div class="content-wrapper">
         <img src="wizard-hat.png" alt="Wizard Hat" class="wizard-image">
         <div class="main-content">
-            <h2 style="font-family: 'IM Fell English SC'; font-size: 1.9rem;">Profil</h2>
+            <h2 style="font-family: 'IM Fell English SC'; font-size: 1.9rem;" >Profil</h2>
             <form id="profileForm">
                 <div class="form-group">
                     <label for="name">Nama</label>
@@ -202,20 +247,11 @@
                 </div>
                 <div class="btn-container">
                     <button type="button" id="cancel" class="btn-save" style="font-family: 'Poppins';">Batal</button>
-                    <button type="submit" class="btn-save" style="font-family: 'Poppins'">Simpan</button>
+                    <button type="submit" class="btn-save" style="font-family: 'Poppins';">Simpan</button>
                 </div>
             </form>
         </div>
     </div>
-
-    <script>
-        function toggleMenu() {
-            const navLinks = document.getElementById("navLinks");
-            navLinks.classList.toggle("active");
-        }
-    </script>
-
-
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
         import { getAuth, onAuthStateChanged, updateProfile } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
@@ -297,8 +333,7 @@
             console.error("Error updating profile:", error);
           }
         });
-      </script>  
-          
+      </script>      
           
 </body>
 </html>
