@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kuis Imbuhan</title>
+    <title>Kuis Huruf Kapital</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         * {
@@ -29,11 +29,6 @@
             position: relative;
         }
 
-        .new-word {
-            font-size: 14px;
-            color: #b39ddb;
-            margin-bottom: 10px;
-        }
 
         h1 {
             font-size: 24px;
@@ -135,22 +130,30 @@
         }
 
         .popup button {
+            width: 130px;
             display: flex;
-            flex-direction: row;
-            justify-self: center;
+            justify-content: center;
+            align-items: center;
+            flex-direction:column;
             background-color: #4CAF50;
             color: #fff;
-            font-weight: bold;
             border: none;
             padding: 10px 20px;
             border-radius: 5px;
             cursor: pointer;
             margin: 10px;
             margin-bottom: 2px;
+            font-family: 'Poppins';
         }
 
         .popup button.exit {
             background-color: #D32F2F;
+        }
+
+        .popup-img {
+            width: 70px;
+            height: 70px;
+            justify-self: center;
         }
 
         /* Dim background when pop-up is active */
@@ -177,28 +180,63 @@
             left: 40px;
             z-index: 15;
         }
+
+        .quiz-result-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            color: #000;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            z-index: 1000;
+        }
+
+        .quiz-result-popup h2 {
+            margin-bottom: 15px;
+        }
+
+        .popup-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .popup-buttons button {
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .popup-buttons button#exit-quiz {
+            background-color: #D32F2F;
+        }
+
         @media (max-width: 768px) {
             .close-button {
                 top: 43px;
                 left: 10px;
             }
-        }
-
+        }    
     </style>
 </head>
 <body>
     <div class="overlay" id="overlay"></div>
     <div class="container">
-        <button class="close-button" onclick="showPopup()">X</button>
+        <button class="close-button">X</button>
         <div class="progress-bar">
             <div class="progress-bar-fill"></div>
         </div>
 
-        <!-- Soal -->
-        <div class="new-word">Pertanyaan Baru</div>
         <h1 id="question-text">Kalimat mana yang menggunakan huruf kapital dengan benar?</h1>
 
-        <!-- Pilihan jawaban -->
         <div class="options">
             <div class="option-card" onclick="selectOption(0)">
                 <p class="option-text" id="option-0">Option 1</p>
@@ -211,18 +249,64 @@
             </div>
         </div>
 
-        <!-- Button to check answer and move to the next question -->
         <div id="next-button" onclick="nextQuestion()">Lanjut</div>
     </div>
 
     <div class="popup" id="popup">
+        <img src="candle.png" alt="Candle Image" style="width: 50px; height: auto; margin: 10px 0;" class="popup-img">
         <p>Apakah kamu yakin ingin keluar?</p>
         <p>Jawabanmu tidak dapat tersimpan.</p>
-        <button onclick="hidePopup()" style="font-family: Poppins;">Tetap mengerjakan</button>
-        <button class="exit" onclick="exitQuiz()" style="font-family: Poppins;">Keluar</button>
+        <div class="popup-buttons">
+            <button class="stay">Batal</button>
+            <button class="exit">Keluar</button>
+        </div>
     </div>
-    <script>
-        // Quiz data
+
+    <div class="quiz-result-popup" id="quiz-result-popup">
+        <h2>Hasil Kuis</h2>
+        <p id="quiz-result-message"></p>
+        <div class="popup-buttons">
+            <button id="retry-quiz">Ulangi Kuis</button>
+            <button id="exit-quiz">Keluar</button>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js";
+        import { getAuth } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
+        import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js";
+    
+        // Konfigurasi Firebase Anda
+        const firebaseConfig = {
+            apiKey: "AIzaSyCBNu8V547_Eg5hg1_hmbuibGmTf5olOJg",
+            authDomain: "bahasaku-eb21d.firebaseapp.com",
+            projectId: "bahasaku-eb21d",
+            storageBucket: "bahasaku-eb21d.firebasestorage.app",
+            messagingSenderId: "636276077242",
+            appId: "1:636276077242:web:aa463e78c2e0385594c883",
+            measurementId: "G-RHC681N2XH"
+        };
+    
+        // Inisialisasi Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        function showPopup() {
+            document.getElementById('popup').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+        }
+        
+        function hidePopup() {
+            document.getElementById('popup').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        }
+        
+        function exitQuiz() {
+            window.location.href = "kuis.html";
+        }
+    
+        // Data kuis
         const questions = [
             {
                 question: "Kalimat mana yang menggunakan huruf kapital dengan benar?",
@@ -248,91 +332,120 @@
                 question: "Pilih yang benar:",
                 options: ["ini adalah hari minggu.", "Kami berangkat ke Bali.", "Selamat tahun baru."],
                 correctAnswer: 1
-            }
+            }        
         ];
-
+    
         let currentQuestionIndex = 0;
         let selectedOption = null;
         let score = 0;
 
         
-        // Initialize the quiz
-        function loadQuestion() {
-            const savedQuestionIndex = localStorage.getItem('currentQuestionIndex');
-            if (savedQuestionIndex !== null) {
-                currentQuestionIndex = parseInt(savedQuestionIndex);
-            }
-
-            const question = questions[currentQuestionIndex];
-            document.getElementById('question-text').textContent = question.question;
-            question.options.forEach((option, index) => {
-                document.getElementById(`option-${index}`).textContent = option;
-            });
-            document.getElementById('next-button').style.display = 'none';
-            document.querySelectorAll('.option-card').forEach(card => {
-                card.classList.remove('correct', 'incorrect');
-                card.style.pointerEvents = 'auto';
-            });
-
-            // Update progress bar
-            const progress = ((currentQuestionIndex) / questions.length) * 100;
-            document.querySelector('.progress-bar-fill').style.width = `${progress}%`;
-        }
-
-        function selectOption(optionNumber) {
-            selectedOption = optionNumber;
-            checkAnswer();
-        }
-
-        function checkAnswer() {
-            const question = questions[currentQuestionIndex];
-            const isCorrect = selectedOption === question.correctAnswer;
-            
-            document.querySelectorAll('.option-card').forEach((card, index) => {
-                card.classList.remove('correct', 'incorrect');
-                if (index === question.correctAnswer) {
-                    card.classList.add('correct'); // Beri warna hijau pada jawaban benar
-                } else if (index === selectedOption) {
-                    card.classList.add('incorrect'); // Beri warna merah pada jawaban salah
+    
+        window.onload =function() {
+            async function saveProgressToFirestore(score) {
+                const user = auth.currentUser;
+                if (user) {
+                    const userId = user.uid;
+                    try {
+                        const userProgressRef = doc(db, "users", userId, "progress", "huruf-kapital");
+                        await setDoc(userProgressRef, {
+                            status: "completed",
+                            score: score,
+                            date: new Date().toISOString(),
+                        }, { merge: true });
+                        console.log("Progress berhasil disimpan di Firestore.");
+                    } catch (error) {
+                        console.error("Error menyimpan progress: ", error);
+                    }
                 }
-                card.style.pointerEvents = 'none'; // Menonaktifkan klik pada opsi
-            });
-
-            if (isCorrect) score++;
-            document.getElementById('next-button').style.display = 'inline-block';
-        }
-
-
-        function nextQuestion() {
-            if (currentQuestionIndex < questions.length - 1) {
-                currentQuestionIndex++;
-                // Simpan currentQuestionIndex ke localStorage setiap kali pindah ke soal berikutnya
-                localStorage.setItem('currentQuestionIndex', currentQuestionIndex);
-                loadQuestion();
-            } else {
-                alert(`Quiz selesai! Skor Anda: ${score} dari ${questions.length}`);
-                localStorage.removeItem('currentQuestionIndex'); // Hapus data soal terakhir saat kuis selesai
-                window.location.href = "kuis.html";
             }
-        }
-        // Load the first question on page load
-        loadQuestion();
-        function showPopup() {
-            document.getElementById('popup').style.display = 'block';
-            document.getElementById('overlay').style.display = 'block';
+
+            // Inisialisasi kuis
+            function loadQuestion() {
+                const question = questions[currentQuestionIndex];
+                document.getElementById('question-text').textContent = question.question;
+                question.options.forEach((option, index) => {
+                    document.getElementById(`option-${index}`).textContent = option;
+                });
+                document.getElementById('next-button').style.display = 'none';
+                document.querySelectorAll('.option-card').forEach(card => {
+                    card.classList.remove('correct', 'incorrect');
+                    card.style.pointerEvents = 'auto';
+                });
+                const progress = ((currentQuestionIndex) / questions.length) * 100;
+                document.querySelector('.progress-bar-fill').style.width = `${progress}%`;
+            }
+        
+            function selectOption(optionNumber) {
+                selectedOption = optionNumber;
+                checkAnswer();
+            }
+        
+            function checkAnswer() {
+                const question = questions[currentQuestionIndex];
+                const isCorrect = selectedOption === question.correctAnswer;
+        
+                document.querySelectorAll('.option-card').forEach((card, index) => {
+                    card.classList.remove('correct', 'incorrect');
+                    if (index === question.correctAnswer) {
+                        card.classList.add('correct');
+                    } else if (index === selectedOption) {
+                        card.classList.add('incorrect');
+                    }
+                    card.style.pointerEvents = 'none';
+                });
+        
+                if (isCorrect) score++;
+                document.getElementById('next-button').style.display = 'inline-block';
+            }
+        
+            function nextQuestion() {
+                if (currentQuestionIndex < questions.length - 1) {
+                    currentQuestionIndex++;
+                    loadQuestion();
+                } else {
+                    // Simpan progress ke Firestore
+                    saveProgressToFirestore(score);
+                    
+                    // Tampilkan pop-up hasil kuis
+                    const resultPopup = document.getElementById('quiz-result-popup');
+                    const resultMessage = document.getElementById('quiz-result-message');
+                    resultMessage.textContent = `Kuis selesai! Skor Anda: ${score} dari ${questions.length}`;
+                    resultPopup.style.display = 'block';
+                    document.getElementById('overlay').style.display = 'block';
+
+                    // Tambahkan event listener untuk tombol di dalam pop-up
+                    document.getElementById('retry-quiz').addEventListener('click', () => {
+                        // Muat ulang halaman untuk mengulangi kuis
+                        location.reload();
+                    });
+                    document.getElementById('exit-quiz').addEventListener('click', () => {
+                        // Kembali ke halaman utama kuis
+                        window.location.href = "kuis.html";
+                    });
+                }
+            }       
+
+            loadQuestion();
+
+            document.querySelectorAll('.option-card').forEach((card, index) => {
+            card.addEventListener('click', () => selectOption(index));
+        });
+
+        
+
+        document.querySelector('.close-button').addEventListener('click', showPopup);
+
+        document.querySelector('.stay').addEventListener('click', hidePopup);
+
+        document.querySelector('.exit').addEventListener('click', exitQuiz);
+
+        // Event listener
+        document.getElementById('next-button').addEventListener('click', nextQuestion);
+
         }
 
-        // Function to hide the pop-up confirmation
-        function hidePopup() {
-            document.getElementById('popup').style.display = 'none';
-            document.getElementById('overlay').style.display = 'none';
-        }
-
-        // Function to exit the quiz
-        function exitQuiz() {
-            window.location.href = "kuis.html";
-            // Add any additional actions you want on exit, e.g., redirect or close the page
-        }
     </script>
+    
 </body>
 </html>
