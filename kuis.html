@@ -6,10 +6,9 @@ kuis.html
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Kuis</title>
+    <title>Kuis - Luminara</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        /* Basic Styling */
         * {
             margin: 0;
             padding: 0;
@@ -22,7 +21,6 @@ kuis.html
             color: #333;
         }
 
-        /* Navbar Styling */
         header {
             background-color: rgb(255, 255, 255);
             color: rgb(73, 54, 111);
@@ -58,14 +56,12 @@ kuis.html
             font-weight: 500;
         }
 
-        /* Hamburger Menu Styling */
         .hamburger {
             font-size: 24px;
             cursor: pointer;
             display: none;
         }
 
-        /* Responsive Navbar */
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
@@ -88,9 +84,8 @@ kuis.html
             }
         }
 
-        /* Content Styling */
         .content {
-            padding: 100px 20px 20px; /* Offset untuk navbar tetap */
+            padding: 100px 20px 20px;
         }
 
         h2 {
@@ -125,7 +120,7 @@ kuis.html
             flex-direction: column;
             justify-content: flex-end;
             align-items: flex-end;
-            margin-top: auto; /* Menempatkan tombol di bagian bawah */
+            margin-top: auto;
         }
 
         .quiz-image {
@@ -134,7 +129,6 @@ kuis.html
             object-fit: cover;
         }
 
-        /* Efek untuk gambar setelah kuis selesai */
         .quiz-card.active {
             animation: active-glow 1.5s infinite alternate;
             transform: translateY(-3px);
@@ -291,14 +285,12 @@ kuis.html
     </div>
 
     <script>
-        
         function toggleMenu() {
             const navLinks = document.getElementById("navLinks");
             navLinks.classList.toggle("active");
         }
 
         
-        // Function to initialize the quiz cards' status
         function initializeQuizCards() {
             const quizzes = ["huruf-kapital", "huruf-tebal", "imbuhan", "unsur-terikat", "serapan", "kata-majemuk"];
             quizzes.forEach((quiz, index) => {
@@ -306,15 +298,13 @@ kuis.html
                 const button = quizCard.querySelector(".quiz-button");
                 const isCompleted = localStorage.getItem(quiz);
 
-                // Ubah label tombol berdasarkan status
                 if (isCompleted === "completed") {
-                    button.textContent = "Ulangi"; // Tombol untuk kuis selesai
+                    button.textContent = "Ulangi"; 
                 } else {
-                    button.textContent = "Mulai"; // Tombol default untuk kuis baru
-                    quizCard.classList.add("active"); // Tambahkan efek sinar berpendar
+                    button.textContent = "Mulai"; 
+                    quizCard.classList.add("active");
                 }
 
-                // Atur aksesibilitas kuis
                 if (index === 0 || localStorage.getItem(quizzes[index - 1]) === "completed") {
                     quizCard.classList.remove("disabled");
                     quizCard.onclick = function() {
@@ -331,50 +321,43 @@ kuis.html
             });
         }
 
-    function updateQuizCards(progress) {
-        const quizzes = ["huruf-kapital", "huruf-tebal", "imbuhan", "terikat", "serapan", "kata-majemuk"];
-        quizzes.forEach((quiz, index) => {
-            const quizCard = document.querySelector(`.quiz-card[onclick="location.href='${quiz}.html'"]`);
-            const quizStatus = progress[quiz];
+        function updateQuizCards(progress) {
+            const quizzes = ["huruf-kapital", "huruf-tebal", "imbuhan", "terikat", "serapan", "kata-majemuk"];
+            quizzes.forEach((quiz, index) => {
+                const quizCard = document.querySelector(`.quiz-card[onclick="location.href='${quiz}.html'"]`);
+                const quizStatus = progress[quiz];
 
-            if (quizStatus === 'completed') {
-                quizCard.classList.add('completed');
-                quizCard.classList.remove('disabled');
-                quizCard.onclick = function() {
-                    location.href = `${quiz}.html`;
-                };
-            } else if (index === 0 || progress[quizzes[index - 1]] === 'completed') {
-                quizCard.classList.remove('disabled');
-                quizCard.onclick = function() {
-                    location.href = `${quiz}.html`;
-                };
-            } else {
-                quizCard.classList.add('disabled');
-                quizCard.onclick = function(event) {
-                    event.preventDefault();
-                    alert("Selesaikan kuis sebelumnya untuk membuka kuis ini.");
-                };
-            }
-        });
-    }
-
-        // Menandai kuis sebagai selesai di localStorage
-    function markQuizAsCompleted(quizName) {
-        localStorage.setItem(quizName, "completed");
-
-        // Cari kartu kuis yang bersangkutan dan tambahkan kelas 'completed'
-        const quizCard = document.querySelector(`.quiz-card[onclick="location.href='${huruf-kapital}.html'"]`);
-        if (quizCard) {
-            quizCard.classList.add("completed");
+                if (quizStatus === 'completed') {
+                    quizCard.classList.add('completed');
+                    quizCard.classList.remove('disabled');
+                    quizCard.onclick = function() {
+                        location.href = `${quiz}.html`;
+                    };
+                } else if (index === 0 || progress[quizzes[index - 1]] === 'completed') {
+                    quizCard.classList.remove('disabled');
+                    quizCard.onclick = function() {
+                        location.href = `${quiz}.html`;
+                    };
+                } else {
+                    quizCard.classList.add('disabled');
+                    quizCard.onclick = function(event) {
+                        event.preventDefault();
+                        alert("Selesaikan kuis sebelumnya untuk membuka kuis ini.");
+                    };
+                }
+            });
         }
-    }
 
-    // Run the initialize function when the page loads
-    document.addEventListener("DOMContentLoaded", initializeQuizCards);
+        function markQuizAsCompleted(quizName) {
+            localStorage.setItem(quizName, "completed");
 
-    // Panggil fungsi ini setelah setiap kuis selesai
-    markQuizAsCompleted("huruf-kapital"); // contoh untuk halaman 'Huruf Kapital'
+            const quizCard = document.querySelector(`.quiz-card[onclick="location.href='${huruf-kapital}.html'"]`);
+            if (quizCard) {
+                quizCard.classList.add("completed");
+            }
+        }
 
+        document.addEventListener("DOMContentLoaded", initializeQuizCards);
     </script>
 </body>
 </html>

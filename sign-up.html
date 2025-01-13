@@ -32,10 +32,29 @@
           email: user.email,
           uid: user.uid
         });
-        console.log("Pengguna berhasil ditambahkan ke Firestore!");
+
+        const quizzes = [
+          "huruf-kapital", 
+          "huruf-tebal", 
+          "imbuhan", 
+          "unsur-terikat", 
+          "unsur-serapan", 
+          "kata-majemuk"
+        ];
+
+        quizzes.forEach(async (quiz) => {
+          const quizRef = doc(db, "users", user.uid, "quizzes", quiz);
+          await setDoc(quizRef, {
+            status: "locked", // Status awal
+            score: 0          // Skor default
+          });
+        });
+
+        console.log("Pengguna dan quizzes berhasil ditambahkan ke Firestore!");
       } catch (error) {
         console.error("Error menambahkan pengguna ke Firestore:", error);
       }
+        
     };
   
     
@@ -212,7 +231,6 @@
       }
 
       .wand-image {
-        image-orientation: flip ;
         width: 100%;
         margin-right: 0;
       }

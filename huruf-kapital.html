@@ -104,7 +104,6 @@
             transition: width 0.3s;
         }
 
-        /* Correct/incorrect answer styling */
         .correct {
             background-color: #4CAF50 !important;
         }
@@ -276,7 +275,6 @@
         import { getAuth } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
         import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js";
     
-        // Konfigurasi Firebase Anda
         const firebaseConfig = {
             apiKey: "AIzaSyCBNu8V547_Eg5hg1_hmbuibGmTf5olOJg",
             authDomain: "bahasaku-eb21d.firebaseapp.com",
@@ -287,7 +285,6 @@
             measurementId: "G-RHC681N2XH"
         };
     
-        // Inisialisasi Firebase
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = getFirestore(app);
@@ -306,7 +303,6 @@
             window.location.href = "kuis.html";
         }
     
-        // Data kuis
         const questions = [
             {
                 question: "Kalimat mana yang menggunakan huruf kapital dengan benar?",
@@ -336,31 +332,33 @@
         ];
     
         let currentQuestionIndex = 0;
-        let selectedOption = null;
+        let userAnswers = [];
         let score = 0;
 
         
-    
         window.onload =function() {
             async function saveProgressToFirestore(score) {
-                const user = auth.currentUser;
-                if (user) {
-                    const userId = user.uid;
-                    try {
-                        const userProgressRef = doc(db, "users", userId, "progress", "huruf-kapital");
-                        await setDoc(userProgressRef, {
-                            status: "completed",
-                            score: score,
-                            date: new Date().toISOString(),
-                        }, { merge: true });
-                        console.log("Progress berhasil disimpan di Firestore.");
-                    } catch (error) {
-                        console.error("Error menyimpan progress: ", error);
+                try {
+                    const user = auth.currentUser;
+                    if (!user) {
+                        console.error("User not logged in.");
+                        return;
                     }
+                    const userId = user.uid;
+
+                    const quizId = `huruf_kapital`;
+                    const quizRef = doc(db, "users", userId, "quizzes", quizId);
+
+                    await setDoc(quizRef, {
+                        score: score,
+                    });
+
+                    console.log("Quiz progress saved successfully.");
+                } catch (error) {
+                    console.error("Error saving quiz progress:", error);
                 }
             }
 
-            // Inisialisasi kuis
             function loadQuestion() {
                 const question = questions[currentQuestionIndex];
                 document.getElementById('question-text').textContent = question.question;
@@ -404,23 +402,18 @@
                     currentQuestionIndex++;
                     loadQuestion();
                 } else {
-                    // Simpan progress ke Firestore
                     saveProgressToFirestore(score);
                     
-                    // Tampilkan pop-up hasil kuis
                     const resultPopup = document.getElementById('quiz-result-popup');
                     const resultMessage = document.getElementById('quiz-result-message');
                     resultMessage.textContent = `Kuis selesai! Skor Anda: ${score} dari ${questions.length}`;
                     resultPopup.style.display = 'block';
                     document.getElementById('overlay').style.display = 'block';
 
-                    // Tambahkan event listener untuk tombol di dalam pop-up
                     document.getElementById('retry-quiz').addEventListener('click', () => {
-                        // Muat ulang halaman untuk mengulangi kuis
                         location.reload();
                     });
                     document.getElementById('exit-quiz').addEventListener('click', () => {
-                        // Kembali ke halaman utama kuis
                         window.location.href = "kuis.html";
                     });
                 }
@@ -432,15 +425,10 @@
             card.addEventListener('click', () => selectOption(index));
         });
 
-        
 
         document.querySelector('.close-button').addEventListener('click', showPopup);
-
         document.querySelector('.stay').addEventListener('click', hidePopup);
-
         document.querySelector('.exit').addEventListener('click', exitQuiz);
-
-        // Event listener
         document.getElementById('next-button').addEventListener('click', nextQuestion);
 
         }
